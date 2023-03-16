@@ -1,6 +1,6 @@
 from django.db import models
-from reg_and_auth.models import User
-from catalog.models import Product
+from ..reg_and_auth.models import User
+from ..catalog.models import Product
 
 
 STATUS_CHOICES = [
