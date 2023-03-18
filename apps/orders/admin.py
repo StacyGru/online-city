@@ -5,19 +5,19 @@ from . import models
 class DeliveryAddressAdmin(admin.ModelAdmin):
     list_display = ('id', 'client', 'city', 'street', 'building_number', 'entrance_number', 'floor', 'apartment_number')
     search_fields = ('id', 'client', 'city', 'street', 'building_number', 'entrance_number', 'floor', 'apartment_number')
-    filter_fields = ('client', 'city', 'street', 'building_number', 'entrance_number', 'floor', 'apartment_number')
+    filter_fields = ('client', 'city', 'street')
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'sum', 'status')
     search_fields = ('id', 'client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'sum', 'status')
-    filter_fields = ('client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'sum', 'status')
+    filter_fields = ('client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'status')
 
 
 class BasketItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'client', 'product', 'amount')
     search_fields = ('id', 'client', 'product', 'amount')
-    filter_fields = ('client', 'product', 'amount')
+    filter_fields = ('client', 'product')
 
 
 class OrderItemAdmin(admin.ModelAdmin):

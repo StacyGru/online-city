@@ -15,7 +15,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'manufacturer'
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Diagonal(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'diagonal'
 
     def __str__(self):
@@ -37,7 +37,7 @@ class ScreenResolution(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'screen_resolution'
 
     def __str__(self):
@@ -48,7 +48,7 @@ class MatrixType(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'matrix_type'
 
     def __str__(self):
@@ -59,7 +59,7 @@ class UpdateFrequency(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'update_frequency'
 
     def __str__(self):
@@ -70,7 +70,7 @@ class CurvedScreen(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'curved_screen'
 
     def __str__(self):
@@ -81,7 +81,7 @@ class Connectors(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'connectors'
 
     def __str__(self):
@@ -92,7 +92,7 @@ class FrameColor(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'frame_color'
 
     def __str__(self):
@@ -103,7 +103,7 @@ class WallMount(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'wall_mount'
 
     def __str__(self):
@@ -114,7 +114,7 @@ class AspectRatio(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'aspect_ratio'
 
     def __str__(self):
@@ -134,7 +134,7 @@ class MonitorDetails(models.Model):
     aspect_ratio = models.ForeignKey(AspectRatio, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'monitor_details'
 
     def __str__(self):
@@ -148,7 +148,7 @@ class Case(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'case'
 
     def __str__(self):
@@ -159,7 +159,7 @@ class Processor(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'processor'
 
     def __str__(self):
@@ -170,7 +170,7 @@ class Motherboard(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'motherboard'
 
     def __str__(self):
@@ -181,7 +181,7 @@ class Fan(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'fan'
 
     def __str__(self):
@@ -192,7 +192,7 @@ class Memory(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'memory'
 
     def __str__(self):
@@ -203,7 +203,7 @@ class Storage(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'storage'
 
     def __str__(self):
@@ -214,7 +214,7 @@ class VideoCard(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'video_card'
 
     def __str__(self):
@@ -225,7 +225,7 @@ class OpticalDrive(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'optical_drive'
 
     def __str__(self):
@@ -236,7 +236,7 @@ class SoundAndNetworkCard(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sound_and_network_card'
 
     def __str__(self):
@@ -255,7 +255,7 @@ class SystemUnitDetails(models.Model):
     sound_and_network_card = models.ForeignKey(SoundAndNetworkCard, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'system_unit_details'
 
     def __str__(self):
@@ -269,7 +269,7 @@ class Monitor(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'monitor'
 
     def __str__(self):
@@ -280,7 +280,7 @@ class Keyboard(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'keyboard'
 
     def __str__(self):
@@ -291,7 +291,7 @@ class Mouse(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mouse'
 
     def __str__(self):
@@ -302,7 +302,7 @@ class Speakers(models.Model):
     name = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'speakers'
 
     def __str__(self):
@@ -317,7 +317,7 @@ class ComputerKitDetails(models.Model):
     speakers = models.ForeignKey(Speakers, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'computer_kit_details'
 
     def __str__(self):
@@ -331,15 +331,15 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     short_description = models.CharField(max_length=500)
     detailed_description = models.CharField(max_length=3000)
-    price = models.IntegerField(max_length=10)
+    price = models.IntegerField()
     picture = models.ImageField(blank=True)
-    category = models.CharField(choices=CATEGORY_CHOICES)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=150)
     computer_kit = models.ForeignKey(ComputerKitDetails, models.DO_NOTHING)
     system_unit = models.ForeignKey(SystemUnitDetails, models.DO_NOTHING)
     monitor = models.ForeignKey(MonitorDetails, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'product'
 
     def __str__(self):

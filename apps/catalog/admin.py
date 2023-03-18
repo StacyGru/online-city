@@ -104,7 +104,6 @@ class SoundAndNetworkCardAdmin(admin.ModelAdmin):
 
 
 class SystemUnitDetailsAdmin(admin.ModelAdmin):
-    # list_display = SystemUnitDetails._meta.get_all_field_names()
     list_display = ('id', 'case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
     search_fields = ('id', 'case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
     filter_fields = ('case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
@@ -137,9 +136,9 @@ class ComputerKitDetailsAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'short_description', 'detailed_description', 'price', 'picture' 'category', 'computer_kit', 'system_unit', 'monitor')
-    search_fields = ('id', 'name', 'short_description', 'detailed_description', 'price', 'picture' 'category', 'computer_kit', 'system_unit', 'monitor')
-    filter_fields = ('name', 'short_description', 'detailed_description', 'price', 'picture' 'category', 'computer_kit', 'system_unit', 'monitor')
+    list_display = ('id', 'name', 'short_description', 'detailed_description', 'price', 'picture', 'category', 'computer_kit', 'system_unit', 'monitor')
+    search_fields = ('id', 'name', 'short_description', 'detailed_description', 'price', 'picture', 'category', 'computer_kit', 'system_unit', 'monitor')
+    filter_fields = ('name', 'short_description', 'detailed_description', 'price', 'picture', 'category', 'computer_kit', 'system_unit', 'monitor')
 
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)

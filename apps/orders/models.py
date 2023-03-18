@@ -17,12 +17,12 @@ class DeliveryAddress(models.Model):
     city = models.CharField(max_length=50)
     street = models.CharField(max_length=50)
     building_number = models.CharField(max_length=5)
-    entrance_number = models.IntegerField(max_length=2)
-    floor = models.IntegerField(max_length=3)
+    entrance_number = models.IntegerField()
+    floor = models.IntegerField()
     apartment_number = models.CharField(max_length=5)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'delivery_address'
 
     def __str__(self):
@@ -34,11 +34,11 @@ class Order(models.Model):
     order_date_and_time = models.DateTimeField()
     delivery_address = models.ForeignKey(DeliveryAddress, models.DO_NOTHING)
     delivery_date_and_time = models.DateTimeField()
-    sum = models.IntegerField(max_length=10)
-    status = models.CharField(choices=STATUS_CHOICES)
+    sum = models.IntegerField()
+    status = models.CharField(choices=STATUS_CHOICES, max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'order'
 
     def __str__(self):
@@ -48,10 +48,10 @@ class Order(models.Model):
 class BasketItem(models.Model):
     client = models.ForeignKey(User, models.DO_NOTHING)
     product = models.ForeignKey(Product, models.DO_NOTHING)
-    amount = models.IntegerField(max_length=3)
+    amount = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'basket_item'
 
     def __str__(self):
@@ -63,7 +63,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'order_item'
 
     def __str__(self):
