@@ -5,6 +5,7 @@ import Location from "../media/location.png";
 import Phone from "../media/phone.png";
 import User from "../media/user.png";
 import Basket from "../media/basket.png";
+import { Link } from 'react-router-dom'
 
 const Header = () => {
 
@@ -17,13 +18,13 @@ const Header = () => {
 
             <div className="px-10 w-1/2 flex flex-col">
                 <ul className="flex justify-between">
-                    <li className="inline">О компании</li>
-                    <li className="inline">Контакты</li>
-                    <li className="inline">Оплата</li>
-                    <li className="inline">Доставка</li>
-                    <li className="inline">Гарантии</li>
-                    <li className="inline">Гарантии</li>
-                    <li className="inline">Оптовикам</li>
+                    <li className="inline"><Link to="/about_us">О компании</Link></li>
+                    <li className="inline"><Link to="/">Контакты</Link></li>
+                    <li className="inline"><Link to="/">Оплата</Link></li>
+                    <li className="inline"><Link to="/">Доставка</Link></li>
+                    <li className="inline"><Link to="/">Гарантии</Link></li>
+                    <li className="inline"><Link to="/">Гарантии</Link></li>
+                    <li className="inline"><Link to="/">Оптовикам</Link></li>
                 </ul>
                 <div className="mt-7 flex">
                     <button className="bg-mainOrange px-5 py-3 rounded-xl flex justify-center">

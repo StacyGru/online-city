@@ -1,13 +1,18 @@
 import "./index.css"
 import Header from "./components/Header";
-import MainPage from "./components/MainPage";
 import Footer from "./components/Footer";
+import { Routes, Route } from 'react-router-dom'
+import MainPage from "./pages/MainPage"
+import AboutUs from "./pages/AboutUs"
 
 function App() {
     return (
-        <div className="text-xl font-normal text-darkBlue">
+        <div className="text-xl font-normal text-darkBlue bg-grayWhite">
             <Header/>
-            <MainPage/>
+            <Routes>
+                <Route path="/" element={<MainPage/>} />
+                <Route path="/about_us" element={<AboutUs/>} />
+            </Routes>
             <Footer/>
         </div>
     );
