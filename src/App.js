@@ -7,7 +7,7 @@ import AboutUs from "./pages/AboutUs"
 
 function App() {
     return (
-        <div className="text-xl font-normal text-darkBlue bg-grayWhite">
+        <div className="grid-layout text-xs lg:text-sm 2xl:text-lg font-normal text-darkBlue bg-grayWhite">
             <Header/>
             <Routes>
                 <Route path="/" element={<MainPage/>} />
