@@ -68,39 +68,27 @@ class MonitorDetailsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CaseSerializer(serializers.ModelSerializer):
+class AmountOfRAMSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Case
+        model = models.AmountOfRAM
         fields = '__all__'
 
 
-class ProcessorSerializer(serializers.ModelSerializer):
+class ProcessorSeriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Processor
+        model = models.ProcessorSeries
         fields = '__all__'
 
 
-class MotherboardSerializer(serializers.ModelSerializer):
+class HDDVolumeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Motherboard
+        model = models.HDDVolume
         fields = '__all__'
 
 
-class FanSerializer(serializers.ModelSerializer):
+class SSDVolumeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Fan
-        fields = '__all__'
-
-
-class MemorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Memory
-        fields = '__all__'
-
-
-class StorageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Storage
+        model = models.SSDVolume
         fields = '__all__'
 
 
@@ -110,21 +98,9 @@ class VideoCardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class OpticalDriveSerializer(serializers.ModelSerializer):
+class SystemUnitFiltersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.OpticalDrive
-        fields = '__all__'
-
-
-class SoundAndNetworkCardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.SoundAndNetworkCard
-        fields = '__all__'
-
-
-class SystemUnitDetailsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.MonitorDetails
+        model = models.SystemUnitFilters
         fields = '__all__'
 
 

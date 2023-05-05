@@ -58,32 +58,22 @@ class MonitorDetailsAdmin(admin.ModelAdmin):
     filter_fields = ('manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'connectors', 'frame_color', 'wall_mount', 'aspect_ratio')
 
 
-class CaseAdmin(admin.ModelAdmin):
+class AmountOfRAMAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
 
 
-class ProcessorAdmin(admin.ModelAdmin):
+class ProcessorSeriesAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
 
 
-class MotherboardAdmin(admin.ModelAdmin):
+class HDDVolumeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
 
 
-class FanAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class MemoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class StorageAdmin(admin.ModelAdmin):
+class SSDVolumeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
 
@@ -93,20 +83,10 @@ class VideoCardAdmin(admin.ModelAdmin):
     search_fields = ('id', 'name')
 
 
-class OpticalDriveAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class SoundAndNetworkCardAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class SystemUnitDetailsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
-    search_fields = ('id', 'case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
-    filter_fields = ('case', 'processor', 'motherboard', 'fan', 'memory', 'storage', 'video_card', 'optical_drive', 'sound_and_network_card')
+class SystemUnitFiltersAdmin(admin.ModelAdmin):
+    list_display = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
+    search_fields = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
+    filter_fields = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
 
 
 class MonitorAdmin(admin.ModelAdmin):
@@ -153,16 +133,12 @@ admin.site.register(models.WallMount, WallMountAdmin)
 admin.site.register(models.AspectRatio, AspectRatioAdmin)
 admin.site.register(models.MonitorDetails, MonitorDetailsAdmin)
 
-admin.site.register(models.Case, CaseAdmin)
-admin.site.register(models.Processor, ProcessorAdmin)
-admin.site.register(models.Motherboard, MotherboardAdmin)
-admin.site.register(models.Fan, FanAdmin)
-admin.site.register(models.Memory, MemoryAdmin)
-admin.site.register(models.Storage, StorageAdmin)
+admin.site.register(models.AmountOfRAM, AmountOfRAMAdmin)
+admin.site.register(models.ProcessorSeries, ProcessorSeriesAdmin)
+admin.site.register(models.HDDVolume, HDDVolumeAdmin)
+admin.site.register(models.SSDVolume, SSDVolumeAdmin)
 admin.site.register(models.VideoCard, VideoCardAdmin)
-admin.site.register(models.OpticalDrive, OpticalDriveAdmin)
-admin.site.register(models.SoundAndNetworkCard, SoundAndNetworkCardAdmin)
-admin.site.register(models.SystemUnitDetails, SystemUnitDetailsAdmin)
+admin.site.register(models.SystemUnitFilters, SystemUnitFiltersAdmin)
 
 admin.site.register(models.Monitor, MonitorAdmin)
 admin.site.register(models.Keyboard, KeyboardAdmin)

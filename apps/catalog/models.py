@@ -7,6 +7,12 @@ CATEGORY_CHOICES = [
     ('спецпредложения', 'спецпредложения'),
 ]
 
+PURPOSE_CHOICES = [
+    ('для дома', 'для дома'),
+    ('для офиса', 'для офиса'),
+    ('для игр', 'для игр'),
+]
+
 
 # ----------------------------------------------------MonitorDetails----------------------------------------------------
 
@@ -144,74 +150,52 @@ class MonitorDetails(models.Model):
 # --------------------------------------------------SystemUnitDetails---------------------------------------------------
 
 
-class Case(models.Model):
-    name = models.CharField(max_length=150)
+class AmountOfRAM(models.Model):
+    name = models.CharField(max_length=150, null=True)
 
     class Meta:
         managed = True
-        db_table = 'case'
+        db_table = 'amount_of_ram'
 
     def __str__(self):
         return self.name
 
 
-class Processor(models.Model):
-    name = models.CharField(max_length=150)
+class ProcessorSeries(models.Model):
+    name = models.CharField(max_length=150, null=True)
 
     class Meta:
         managed = True
-        db_table = 'processor'
+        db_table = 'processor_series'
 
     def __str__(self):
         return self.name
 
 
-class Motherboard(models.Model):
-    name = models.CharField(max_length=150)
+class HDDVolume(models.Model):
+    name = models.CharField(max_length=150, null=True)
 
     class Meta:
         managed = True
-        db_table = 'motherboard'
+        db_table = 'hdd_volume'
 
     def __str__(self):
         return self.name
 
 
-class Fan(models.Model):
-    name = models.CharField(max_length=150)
+class SSDVolume(models.Model):
+    name = models.CharField(max_length=150, null=True)
 
     class Meta:
         managed = True
-        db_table = 'fan'
-
-    def __str__(self):
-        return self.name
-
-
-class Memory(models.Model):
-    name = models.CharField(max_length=150)
-
-    class Meta:
-        managed = True
-        db_table = 'memory'
-
-    def __str__(self):
-        return self.name
-
-
-class Storage(models.Model):
-    name = models.CharField(max_length=150)
-
-    class Meta:
-        managed = True
-        db_table = 'storage'
+        db_table = 'ssd_volume'
 
     def __str__(self):
         return self.name
 
 
 class VideoCard(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, null=True)
 
     class Meta:
         managed = True
@@ -221,42 +205,17 @@ class VideoCard(models.Model):
         return self.name
 
 
-class OpticalDrive(models.Model):
-    name = models.CharField(max_length=150)
-
-    class Meta:
-        managed = True
-        db_table = 'optical_drive'
-
-    def __str__(self):
-        return self.name
-
-
-class SoundAndNetworkCard(models.Model):
-    name = models.CharField(max_length=150)
-
-    class Meta:
-        managed = True
-        db_table = 'sound_and_network_card'
-
-    def __str__(self):
-        return self.name
-
-
-class SystemUnitDetails(models.Model):
-    case = models.ForeignKey(Case, models.DO_NOTHING)
-    processor = models.ForeignKey(Processor, models.DO_NOTHING)
-    motherboard = models.ForeignKey(Motherboard, models.DO_NOTHING)
-    fan = models.ForeignKey(Fan, models.DO_NOTHING)
-    memory = models.ForeignKey(Memory, models.DO_NOTHING)
-    storage = models.ForeignKey(Storage, models.DO_NOTHING)
+class SystemUnitFilters(models.Model):
+    purpose = models.CharField(choices=PURPOSE_CHOICES, max_length=150, null=True)
+    amount_of_ram = models.ForeignKey(AmountOfRAM, models.DO_NOTHING)
+    processor_series = models.ForeignKey(ProcessorSeries, models.DO_NOTHING)
+    hdd_volume = models.ForeignKey(HDDVolume, models.DO_NOTHING)
+    ssd_volume = models.ForeignKey(SSDVolume, models.DO_NOTHING)
     video_card = models.ForeignKey(VideoCard, models.DO_NOTHING)
-    optical_drive = models.ForeignKey(OpticalDrive, models.DO_NOTHING)
-    sound_and_network_card = models.ForeignKey(SoundAndNetworkCard, models.DO_NOTHING)
 
     class Meta:
         managed = True
-        db_table = 'system_unit_details'
+        db_table = 'system_unit_filters'
 
     def __str__(self):
         return str(self.id)
@@ -310,7 +269,7 @@ class Speakers(models.Model):
 
 
 class ComputerKitDetails(models.Model):
-    system_unit = models.ForeignKey(SystemUnitDetails, models.DO_NOTHING)
+    system_unit = models.ForeignKey(SystemUnitFilters, models.DO_NOTHING)
     monitor = models.ForeignKey(Monitor, models.DO_NOTHING)
     keyboard = models.ForeignKey(Keyboard, models.DO_NOTHING)
     mouse = models.ForeignKey(Mouse, models.DO_NOTHING)
@@ -334,13 +293,13 @@ class Product(models.Model):
     price = models.IntegerField()
     picture = models.ImageField(blank=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=150)
-    computer_kit = models.ForeignKey(ComputerKitDetails, models.DO_NOTHING)
-    system_unit = models.ForeignKey(SystemUnitDetails, models.DO_NOTHING)
-    monitor = models.ForeignKey(MonitorDetails, models.DO_NOTHING)
+    computer_kit = models.ForeignKey(ComputerKitDetails, models.DO_NOTHING, blank=True, null=True)
+    system_unit = models.ForeignKey(SystemUnitFilters, models.DO_NOTHING, blank=True, null=True)
+    monitor = models.ForeignKey(MonitorDetails, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = True
         db_table = 'product'
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
