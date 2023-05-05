@@ -26,10 +26,10 @@ const Header = () => {
                     <li className="inline"><Link to="/for_wholesalers">Оптовикам</Link></li>
                 </ul>
                 <div className="flex mt-3">
-                    <button className="bg-mainOrange px-5 py-2 rounded-xl flex justify-center items-center">
+                    <Link to="/catalog" className="bg-mainOrange px-5 py-2 rounded-xl flex justify-center items-center">
                         <img src={BurgerMenu} className="h-5 mr-3"/>
                         <p>Каталог</p>
-                    </button>
+                    </Link>
                     <div className="ml-5 w-full border-grayWhite border-2 rounded-xl px-3 flex justify-between items-center">
                         <input className="grow bg-darkBlue font-light" placeholder="Поиск..."/>
                         <img src={Search} className="h-5 my-auto ml-3"/>
@@ -67,14 +67,18 @@ const Header = () => {
                 </div>
             </div>
             <div className="w-1/6 3xl:w-1/10 flex justify-center items-center gap-x-5 xl:gap-x-10">
-                <div className="flex flex-col items-center">
-                    <img src={User} className="object-contain xl:h-10 h-5 mb-1"/>
-                    <p>Вход</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src={Basket} className="object-contain xl:h-10 h-5 mb-1"/>
-                    <p>Корзина</p>
-                </div>
+                <Link to="/login">
+                 <div className="flex flex-col items-center">
+                        <img src={User} className="object-contain xl:h-10 h-5 mb-1"/>
+                        <p>Вход</p>
+                    </div>
+                </Link>
+                <Link to="/basket">
+                    <div className="flex flex-col items-center">
+                        <img src={Basket} className="object-contain xl:h-10 h-5 mb-1"/>
+                        <p>Корзина</p>
+                    </div>
+                </Link>
             </div>
         </header>
     )
