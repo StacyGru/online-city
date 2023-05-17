@@ -1,4 +1,9 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+from .managers import UserManager
 
 ROLE_CHOICES = [
     ('клиент', 'клиент'),
@@ -7,18 +12,20 @@ ROLE_CHOICES = [
 ]
 
 
-class User(models.Model):
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    phone = models.IntegerField()
-    email = models.CharField(max_length=150)
-    role = models.CharField(choices=ROLE_CHOICES, max_length=150)
-    login = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_("email address"), unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    surname = models.CharField(max_length=50, blank=True, null=True)
+    phone = models.IntegerField(blank=True, null=True)
+    role = models.CharField(choices=ROLE_CHOICES, max_length=150, blank=True, null=True)
 
-    class Meta:
-        managed = True
-        db_table = 'user'
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     def __str__(self):
-        return self.surname
+        return self.email

@@ -1,5 +1,6 @@
 from django.db import models
-from ..reg_and_auth.models import User
+
+from project.settings import AUTH_USER_MODEL
 from ..catalog.models import Product
 
 
@@ -13,7 +14,7 @@ STATUS_CHOICES = [
 
 
 class DeliveryAddress(models.Model):
-    client = models.ForeignKey(User, models.DO_NOTHING)
+    client = models.ForeignKey(AUTH_USER_MODEL, models.DO_NOTHING)
     city = models.CharField(max_length=50)
     street = models.CharField(max_length=50)
     building_number = models.CharField(max_length=5)
@@ -30,7 +31,7 @@ class DeliveryAddress(models.Model):
 
 
 class Order(models.Model):
-    client = models.ForeignKey(User, models.DO_NOTHING)
+    client = models.ForeignKey(AUTH_USER_MODEL, models.DO_NOTHING)
     order_date_and_time = models.DateTimeField()
     delivery_address = models.ForeignKey(DeliveryAddress, models.DO_NOTHING)
     delivery_date_and_time = models.DateTimeField()
@@ -46,7 +47,7 @@ class Order(models.Model):
 
 
 class BasketItem(models.Model):
-    client = models.ForeignKey(User, models.DO_NOTHING)
+    client = models.ForeignKey(AUTH_USER_MODEL, models.DO_NOTHING)
     product = models.ForeignKey(Product, models.DO_NOTHING)
     amount = models.IntegerField()
 
