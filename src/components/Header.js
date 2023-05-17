@@ -6,8 +6,12 @@ import Phone from "../media/phone.png";
 import User from "../media/user.png";
 import Basket from "../media/basket.png";
 import { Link } from 'react-router-dom';
+import {useContext} from "react";
+import AuthContext from "../context/AuthContext";
 
 const Header = () => {
+
+    let {user} = useContext(AuthContext)
 
     return (
         <header className="grid-header bg-darkBlue xl:px-20 3xl:px-36 px-10 xl:py-5 py-3 flex text-grayWhite mb-10 justify-center items-center">
@@ -67,12 +71,20 @@ const Header = () => {
                 </div>
             </div>
             <div className="w-1/6 3xl:w-1/10 flex justify-center items-center gap-x-5 xl:gap-x-10">
-                <Link to="/login">
+                {user ?
+                <Link to="/user">
                  <div className="flex flex-col items-center">
+                        <img src={User} className="object-contain xl:h-10 h-5 mb-1"/>
+                        <p>{user.name}</p>
+                    </div>
+                </Link>
+                        :
+                <Link to="/login">
+                    <div className="flex flex-col items-center">
                         <img src={User} className="object-contain xl:h-10 h-5 mb-1"/>
                         <p>Вход</p>
                     </div>
-                </Link>
+                </Link>}
                 <Link to="/basket">
                     <div className="flex flex-col items-center">
                         <img src={Basket} className="object-contain xl:h-10 h-5 mb-1"/>

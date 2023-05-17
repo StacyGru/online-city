@@ -1,11 +1,17 @@
 import {Link} from "react-router-dom";
+import {useContext, useState} from "react";
+import AuthContext from "../context/AuthContext";
+
 
 const LogIn = () => {
+    let {loginUser} = useContext(AuthContext)
 
     return (
         <div className="flex flex-col items-center px-1/10 text-center">
             <h1 className="text-3xl font-bold mb-10">Вход</h1>
-            <form className="w-full flex flex-col items-center">
+            <form className="w-full flex flex-col items-center"
+                  onSubmit={loginUser}
+            >
                 <div className="w-full grid grid-labels grid-rows-2 items-center font-light gap-5">
                     <label htmlFor="email" className="w-fit justify-self-end">E-mail:</label>
                     <input className="bg-mainWhite border-darkBlue border-2 rounded-xl px-3 py-1" id="email"/>

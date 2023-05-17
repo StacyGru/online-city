@@ -15,13 +15,16 @@ import Basket from "./pages/Basket";
 import Catalog from "./pages/Catalog";
 import CatalogComputers from "./pages/CatalogComputers";
 import SystemUnitsList from "./pages/SystemUnitsList";
+import UserAccount from "./pages/UserAccount";
 import ComputerKitsList from "./pages/ComputerKitsList";
 import MonitorsList from "./pages/MonitorsList";
 import SpecialOffersList from "./pages/SpecialOffersList";
+import {AuthProvider} from "./context/AuthContext";
 
 function App() {
     return (
         <div className="grid-layout text-xs lg:text-sm 2xl:text-lg font-normal text-darkBlue bg-grayWhite">
+            <AuthProvider>
                 <Header/>
                 <Routes>
                     <Route path="/" element={<MainPage/>} />
@@ -41,8 +44,10 @@ function App() {
                     <Route path="/computer_kits" element={<ComputerKitsList/>} />
                     <Route path="/monitors" element={<MonitorsList/>} />
                     <Route path="/special_offers" element={<SpecialOffersList/>} />
+                    <Route path="/user" element={<UserAccount/>} />
                 </Routes>
                 <Footer/>
+            </AuthProvider>
         </div>
     );
 }
