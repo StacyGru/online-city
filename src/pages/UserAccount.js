@@ -5,7 +5,7 @@ import AuthContext from "../context/AuthContext";
 const UserAccount = () => {
 
     let {user, logoutUser} = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
 
     return (
         <div className="flex flex-col items-center px-10">

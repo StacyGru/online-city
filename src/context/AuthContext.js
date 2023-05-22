@@ -22,18 +22,16 @@ export const AuthProvider = ({children}) => {
     let loginUser = async (e) => {
         e.preventDefault();
 
-        let response= await fetch(
+        let response = await fetch(
             'http://127.0.0.1:8000/api/token/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                // credentials: 'include',
                 body: JSON.stringify({
                     'email': e.target.email.value,
                     'password': e.target.password.value
                 })
             });
         let data = await response.json();
-        // console.log(response)
 
         if (response.status === 200) {
             setAuthTokens(data)
@@ -54,23 +52,25 @@ export const AuthProvider = ({children}) => {
     }
 
     let updateToken = async () => {
-        console.log('Update token called!')
-        let response= await fetch(
-            'http://127.0.0.1:8000/api/token/refresh/', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    'refresh': authTokens?.refresh
-                })
-            });
-        let data = await response.json();
+        if (authTokens) {
+            console.log('Update token called!')
+            let response= await fetch(
+                'http://127.0.0.1:8000/api/token/refresh/', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        'refresh': authTokens?.refresh
+                    })
+                });
+            let data = await response.json();
 
-        if (response.status === 200) {
-            setAuthTokens(data)
-            setUser(jwt_decode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
-        } else {
-            logoutUser()
+            if (response.status === 200) {
+                setAuthTokens(data)
+                setUser(jwt_decode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+            } else {
+                logoutUser()
+            }
         }
 
         if (loading) {
