@@ -55,8 +55,8 @@ class BasketItem(models.Model):
         managed = True
         db_table = 'basket_item'
 
-    def __str__(self):
-        return str(self.id)
+    # def __str__(self):
+    #     return str(self)
 
 
 class OrderItem(models.Model):
