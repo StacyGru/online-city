@@ -17,6 +17,7 @@ export const AuthProvider = ({children}) => {
     );
     let [loading, setLoading] = useState(true)
 
+
     let navigate = useNavigate()
 
     let loginUser = async (e) => {
@@ -54,7 +55,7 @@ export const AuthProvider = ({children}) => {
     let updateToken = async () => {
         if (authTokens) {
             console.log('Update token called!')
-            let response= await fetch(
+            let response = await fetch(
                 'http://127.0.0.1:8000/api/token/refresh/', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -78,10 +79,12 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+
     let contextData = {
         user:user,
         loginUser:loginUser,
-        logoutUser:logoutUser
+        logoutUser:logoutUser,
+        authTokens:authTokens
     }
 
     useEffect(() => {

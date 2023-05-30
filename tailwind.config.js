@@ -13,7 +13,7 @@ module.exports = {
         mainGray: '#8F8F8F',
       },
       dropShadow: {
-        'sm': '0 1px 1px rgba(0, 0, 0, 0.25)',
+        'sm': '0 0 1px rgba(0, 0, 0, 0.25)',
       },
       screens: {
         'sm': '640px',
