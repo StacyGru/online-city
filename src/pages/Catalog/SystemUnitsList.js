@@ -55,7 +55,7 @@ function SystemUnitsList() {
                 <div/>
             </div>
             <div className="flex flex-wrap justify-center gap-5">
-                {products.map((product, id) => (
+                {products.map((product) => (
                     <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
                         <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-64 m-5"/>
                         <Link to="catalog_item"><h2 className="hover:underline text-xl mb-5">{product.name}</h2></Link>

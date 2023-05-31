@@ -51,7 +51,7 @@ function Basket(){
             <h1 className="text-3xl font-bold mb-10">Корзина</h1>
             <div className="flex gap-10">
                 <div className="flex flex-col items-center">
-                    {basketItems.map((basketItem, id) => (
+                    {basketItems.map((basketItem) => (
                         <div className="bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center justify-center mb-5 w-fit">
                             <div className="w-40 h-40 shrink-0 grow-0">
                                 <img src={basketItem.picture ? "http://localhost:8000"+basketItem.picture : CatalogItemImg} alt="your image" className="h-full w-full object-contain"/>

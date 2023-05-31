@@ -5,55 +5,55 @@
 @tailwind utilities;
 
 body, html {
-  margin: 0;
-  font-family: 'Oswald', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .grid-layout {
-  display: grid;
-  min-height: 100vh;
-  height: auto;
-  grid-template-columns: auto;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
+    display: grid;
+    min-height: 100vh;
+    height: auto;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
       "header"
       "content"
       "footer";
 }
 
 .grid-header {
-  grid-area: header;
+    grid-area: header;
 }
 
 .grid-main {
-  grid-area: content;
+    grid-area: content;
 }
 
 .grid-footer {
-  grid-area: footer;
+    grid-area: footer;
 }
 
 input:focus{
-  outline: none;
+    outline: none;
 }
 
 .grid-login {
-  display: grid;
-  width: 100%;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "labels inputs placeholder";
+    display: grid;
+    width: 100%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "labels inputs placeholder";
 }
 
 .grid-labels
 {
-  grid-template-columns: 1fr 35% 1fr;
+    grid-template-columns: 1fr 35% 1fr;
 }
 
 input::-webkit-outer-spin-button,
@@ -66,23 +66,27 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+td, th {
+    padding: 0.75rem 1rem;
+}
+
 @media (min-width: 1024px) {
-  .grid-labels
-  {
-    grid-template-columns: 1fr 30% 1fr;
-  }
+    .grid-labels
+    {
+        grid-template-columns: 1fr 30% 1fr;
+    }
 }
 
 @media (min-width: 1280px) {
-  .grid-labels
-  {
-    grid-template-columns: 1fr 25% 1fr;
-  }
+    .grid-labels
+    {
+        grid-template-columns: 1fr 25% 1fr;
+    }
 }
 
 @media (min-width: 1800px) {
-  .grid-labels
-  {
-    grid-template-columns: 1fr 15% 1fr;
-  }
+    .grid-labels
+    {
+        grid-template-columns: 1fr 15% 1fr;
+    }
 }

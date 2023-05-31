@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../context/AuthContext";
 import {Link} from "react-router-dom";
 
-function Checkout(){
+function Checkout() {
 
     let {authTokens,} = useContext(AuthContext)
     let [basketItems, setBasketItems] = useState([])
@@ -225,10 +225,10 @@ function Checkout(){
                     </div>
                     <div className="bg-mainWhite w-fit py-10 px-10 drop-shadow-sm rounded-xl flex flex-col h-fit gap-5">
                         <p className="text-xl text-mainGray shrink-0">{basketItems.length} товара</p>
-                        {basketItems.map((basketItem, id) => (
+                        {basketItems.map((basketItem) => (
                             <div className="text-sm">
                                 <p>{basketItem.name}</p>
-                                <p className="text-mainGray font-light">{basketItem.amount} шт. {basketItem.price} ₽</p>
+                                <p className="text-mainGray font-light">{basketItem.amount} шт. {basketItem.price * basketItem.amount} ₽</p>
                             </div>
                         ))}
                         <p className="text-3xl shrink-0">{orderSum()} ₽</p>
