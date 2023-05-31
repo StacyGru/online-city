@@ -26,46 +26,38 @@ class DeliveryAddress(models.Model):
         managed = True
         db_table = 'delivery_address'
 
-    def __str__(self):
-        return str(self.id)
-
 
 class Order(models.Model):
     client = models.ForeignKey(AUTH_USER_MODEL, models.DO_NOTHING)
     order_date_and_time = models.DateTimeField()
-    delivery_address = models.ForeignKey(DeliveryAddress, models.DO_NOTHING)
-    delivery_date_and_time = models.DateTimeField()
+    delivery = models.BooleanField(default=False)
+    delivery_address = models.ForeignKey(DeliveryAddress, models.DO_NOTHING, null=True)
+    delivery_date = models.DateField(null=True)
+    delivery_time1 = models.TimeField(null=True)
+    delivery_time2 = models.TimeField(null=True)
     sum = models.IntegerField()
-    status = models.CharField(choices=STATUS_CHOICES, max_length=150)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=150, default='в обработке')
 
     class Meta:
         managed = True
         db_table = 'order'
 
-    def __str__(self):
-        return str(self.id)
-
 
 class BasketItem(models.Model):
     client = models.ForeignKey(AUTH_USER_MODEL, models.DO_NOTHING)
     product = models.ForeignKey(Product, models.DO_NOTHING)
-    amount = models.IntegerField()
+    amount = models.IntegerField(default=1)
 
     class Meta:
         managed = True
         db_table = 'basket_item'
 
-    # def __str__(self):
-    #     return str(self)
-
 
 class OrderItem(models.Model):
-    basket_item = models.ForeignKey(BasketItem, models.DO_NOTHING)
     order = models.ForeignKey(Order, models.DO_NOTHING)
+    product = models.ForeignKey(Product, models.DO_NOTHING)
+    amount = models.IntegerField(default=1)
 
     class Meta:
         managed = True
         db_table = 'order_item'
-
-    def __str__(self):
-        return str(self.id)

@@ -9,9 +9,9 @@ class DeliveryAddressAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'sum', 'status')
-    search_fields = ('id', 'client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'sum', 'status')
-    filter_fields = ('client', 'order_date_and_time', 'delivery_address', 'delivery_date_and_time', 'status')
+    list_display = ('id', 'client', 'order_date_and_time', 'delivery', 'delivery_address', 'delivery_date', 'delivery_time1', 'delivery_time2', 'sum', 'status')
+    search_fields = ('id', 'client', 'order_date_and_time', 'delivery', 'delivery_address', 'delivery_date', 'delivery_time1', 'delivery_time2', 'sum', 'status')
+    filter_fields = ('client', 'order_date_and_time', 'delivery', 'delivery_address', 'delivery_date', 'delivery_time1', 'delivery_time2', 'sum', 'status')
 
 
 class BasketItemAdmin(admin.ModelAdmin):
@@ -21,9 +21,9 @@ class BasketItemAdmin(admin.ModelAdmin):
 
 
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'basket_item', 'order')
-    search_fields = ('id', 'basket_item', 'order')
-    filter_fields = ('basket_item', 'order')
+    list_display = ('id', 'order', 'product', 'amount')
+    search_fields = ('id', 'order', 'product', 'amount')
+    filter_fields = ('order', 'product', 'amount')
 
 
 admin.site.register(models.DeliveryAddress, DeliveryAddressAdmin)

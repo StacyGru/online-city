@@ -11,7 +11,6 @@ class SystemUnitsListView(APIView):
         for product in models.Product.objects.filter(category='системные блоки'):
             serializer = serializers.ProductSerializer(product)
             new_serializer_data = serializer.data
-            print("PRINT", new_serializer_data)
             basket_item = models.BasketItem.objects.filter(client=self.request.user.id, product=product).first()
             if basket_item:
                 new_serializer_data['basket_amount'] = basket_item.amount
