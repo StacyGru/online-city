@@ -78,11 +78,11 @@ function Basket(){
                         </div>
                     ))}
                 </div>
-                <div className="bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col h-fit gap-5">
-                    <p className="text-mainGray shrink-0">{basketItems.length} товара</p>
-                    <p className="text-2xl shrink-0">{orderSum()} ₽</p>
-                    <Link to="/catalog" className="bg-mainOrange rounded-xl justify-center items-center p-5">
-                        <p className="text-grayWhite whitespace-nowrap">Перейти к оформлению</p>
+                <div className="bg-mainWhite py-10 px-10 drop-shadow-sm rounded-xl flex flex-col h-fit gap-5">
+                    <p className="text-xl text-mainGray shrink-0">{basketItems.length} товара</p>
+                    <p className="text-3xl shrink-0">{orderSum()} ₽</p>
+                    <Link to="/checkout" className="bg-mainOrange rounded-xl justify-center items-center p-5">
+                        <p className="text-mainWhite whitespace-nowrap">Перейти к оформлению</p>
                     </Link>
                 </div>
 

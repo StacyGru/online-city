@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from "react"
-import CatalogItemImg from "../media/catalog_item.png";
-import Basket from "../media/basket.png";
+import CatalogItemImg from "../../media/catalog_item.png";
+import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
 
 class MonitorsList extends React.Component {

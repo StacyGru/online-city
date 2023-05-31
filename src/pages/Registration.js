@@ -248,7 +248,7 @@ const Registration = () => {
                             />
                         ]}
                     </div>
-                    <button type="submit" className="w-fit justify-self-center bg-mainOrange text-grayWhite px-5 py-2 rounded-xl flex justify-center items-center mt-10">
+                    <button type="submit" className="w-fit justify-self-center bg-mainOrange text-mainWhite px-5 py-2 rounded-xl flex justify-center items-center mt-10">
                         <p>Зарегистрироваться</p>
                     </button>
                 </Form>

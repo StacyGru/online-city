@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from "react"
-import CatalogItemImg from "../media/catalog_item.png";
-import Basket from "../media/basket.png";
+import CatalogItemImg from "../../media/catalog_item.png";
+import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
 
 class SystemUnitsList extends React.Component {
@@ -10,7 +10,7 @@ class SystemUnitsList extends React.Component {
 
     componentDidMount() {
         let data;
-        axios.get('http://127.0.0.1:8000/special_offers')
+        axios.get('http://127.0.0.1:8000/computer_kits')
             .then(res => {
                 data = res.data;
                 this.setState({
@@ -30,10 +30,12 @@ class SystemUnitsList extends React.Component {
                     <p className="h-fit w-fit text-xs font-light text-mainGray">
                         <Link to="/catalog" className="hover:underline">Каталог товаров</Link>
                         <span> > </span>
-                        <Link to="/special_offers" className="hover:underline">Спецпредложения</Link>
+                        <Link to="/computers" className="hover:underline">Компьютеры</Link>
+                        <span> > </span>
+                        <Link to="/computer_kits" className="hover:underline">Компьютеры в комплекте</Link>
                     </p>
-                    <h1 className="text-xl lg:text-3xl font-bold mb-10 text-center">Спецпредложения</h1>
-                    <p className="text-mainGray justify-self-end">{this.state.details.length} товар</p>
+                    <h1 className="text-xl lg:text-3xl font-bold mb-10 text-center">Компьютеры в комплекте</h1>
+                    <p className="text-mainGray justify-self-end">{this.state.details.length} товара</p>
                     <div/>
                 </div>
                 <div className="flex flex-wrap justify-center gap-5">

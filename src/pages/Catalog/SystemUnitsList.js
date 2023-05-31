@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react"
-import CatalogItemImg from "../media/catalog_item.png";
-import Basket from "../media/basket.png";
+import CatalogItemImg from "../../media/catalog_item.png";
+import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 function SystemUnitsList() {
     let {user, authTokens} = useContext(AuthContext)
@@ -38,6 +38,8 @@ function SystemUnitsList() {
         window.location.reload(false);
     }
 
+    console.log(products)
+
     return (
         <div>
             <div className="grid grid-cols-3 grid-rows-1 px-1/10">
@@ -64,7 +66,6 @@ function SystemUnitsList() {
                                 <Link to="/basket" className="bg-grayWhite h-12 px-4 drop-shadow-sm rounded-xl flex items-center justify-center">
                                     <p className="whitespace-nowrap">В корзине</p>
                                 </Link>
-
                                 :
                                 <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
                                         onClick={() => addBasketItem(product.id)}

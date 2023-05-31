@@ -1,6 +1,6 @@
-import Computer from "../media/computer.png"
-import Monitor from "../media/monitor.png"
-import SpecialOffer from "../media/special_offer.png"
+import Computer from "../../media/computer.png"
+import Monitor from "../../media/monitor.png"
+import SpecialOffer from "../../media/special_offer.png"
 import {Link} from "react-router-dom";
 
 const Catalog = () => {

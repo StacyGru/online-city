@@ -19,7 +19,7 @@ const LogIn = () => {
                     <label htmlFor="password" className="w-fit justify-self-end">Пароль:</label>
                     <input className="bg-mainWhite border-darkBlue border-2 rounded-xl px-3 py-1" id="password" type="password"/>
                 </div>
-                <button type="submit" className="w-fit justify-self-center bg-mainOrange text-grayWhite px-5 py-2 rounded-xl flex justify-center items-center mt-10">
+                <button type="submit" className="w-fit justify-self-center bg-mainOrange text-mainWhite px-5 py-2 rounded-xl flex justify-center items-center mt-10">
                     <p>Войти</p>
                 </button>
                 <p className="font-light mt-5">Если у вас ещё нет аккаунта на нашем сайте, вы можете<br/>

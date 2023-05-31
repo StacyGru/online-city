@@ -1,25 +1,26 @@
 import "./index.css"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import MainPage from "./pages/MainPage"
-import AboutUs from "./pages/AboutUs"
-import Contacts from "./pages/Contacts";
-import Payment from "./pages/Payment";
-import Delivery from "./pages/Delivery";
-import Guarantees from "./pages/Guarantees";
-import ForWholesalers from "./pages/ForWholesalers";
+import AboutUs from "./pages/InfoPages/AboutUs"
+import Contacts from "./pages/InfoPages/Contacts";
+import Payment from "./pages/InfoPages/Payment";
+import Delivery from "./pages/InfoPages/Delivery";
+import Guarantees from "./pages/InfoPages/Guarantees";
+import ForWholesalers from "./pages/InfoPages/ForWholesalers";
 import LogIn from "./pages/LogIn";
 import Registration from "./pages/Registration";
 import Basket from "./pages/Basket";
-import Catalog from "./pages/Catalog";
-import CatalogComputers from "./pages/CatalogComputers";
-import SystemUnitsList from "./pages/SystemUnitsList";
+import Catalog from "./pages/Catalog/Catalog";
+import CatalogComputers from "./pages/Catalog/CatalogComputers";
+import SystemUnitsList from "./pages/Catalog/SystemUnitsList";
 import UserAccount from "./pages/UserAccount";
-import ComputerKitsList from "./pages/ComputerKitsList";
-import MonitorsList from "./pages/MonitorsList";
-import SpecialOffersList from "./pages/SpecialOffersList";
+import ComputerKitsList from "./pages/Catalog/ComputerKitsList";
+import MonitorsList from "./pages/Catalog/MonitorsList";
+import SpecialOffersList from "./pages/Catalog/SpecialOffersList";
 import {AuthProvider} from "./context/AuthContext";
+import Checkout from "./pages/Checkout";
 
 function App() {
     return (
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/monitors" element={<MonitorsList/>} />
                     <Route path="/special_offers" element={<SpecialOffersList/>} />
                     <Route path="/user" element={<UserAccount/>} />
+                    <Route path="/checkout" element={<Checkout/>} />
                 </Routes>
                 <Footer/>
             </AuthProvider>

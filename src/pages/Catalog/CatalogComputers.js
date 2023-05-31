@@ -1,5 +1,5 @@
-import Computer from "../media/computer.png"
-import SystemUnit from "../media/system_unit.png"
+import Computer from "../../media/computer.png"
+import SystemUnit from "../../media/system_unit.png"
 import {Link} from "react-router-dom";
 
 const CatalogComputers = () => {
