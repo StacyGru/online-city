@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status
@@ -78,7 +77,6 @@ class OrderView(APIView):
         order_serializer.is_valid(raise_exception=True)
         order_serializer.save()
         for basket_item in request.data['basketItems']:
-            print(basket_item)
             order_item_serializer = serializers.OrderItemSerializer(data={
                 'order': order_serializer.instance.id,
                 'product': basket_item['product_id']
@@ -88,3 +86,26 @@ class OrderView(APIView):
             models.BasketItem.objects.get(id=basket_item['id']).delete()
         order_serializer.save()
         return Response(order_serializer.data)
+
+    def get(self, request, *args, **kwargs):
+        orders = []
+        for order in models.Order.objects.filter(client=self.request.user.id):
+            order_items = []
+            for order_item in models.OrderItem.objects.filter(order=order.id):
+                product = order_item.product
+                order_item_serializer = {
+                    'name': product.name,
+                    'price': product.price,
+                    'amount': order_item.amount
+                }
+                order_items.append(order_item_serializer)
+            serializer = {
+                "id": order.id,
+                "order_date_and_time": order.order_date_and_time.strftime("%d.%m.%Y %H:%M"),
+                "order_items": order_items,
+                "sum": order.sum,
+                "delivery": order.delivery,
+                "status": order.status,
+            }
+            orders.append(serializer)
+        return Response(orders)
