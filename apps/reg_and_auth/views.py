@@ -8,41 +8,15 @@ import jwt
 from .serializers import MyTokenObtainPairSerializer
 
 
-class RegistrationView(APIView):
+class UserView(APIView):
     queryset = get_user_model().objects.all()
     serializer_class = serializers.UserSerializer
 
-    def get(self, request):
-        users = []
-        for user in get_user_model().objects.all():
-            serializer = serializers.UserSerializer(user)
-            users.append(serializer.data)
-        return Response(users)
-
+    # регистрация клиента
     def post(self, request):
         serializer = serializers.UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
-
-
-class UserView(APIView):
-    def get(self, request):
-        token = request.COOKIES.get('jwt')
-        print(token)
-
-        if not token:
-            raise AuthenticationFailed('Unauthenticated!')
-
-        try:
-            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated!')
-
-        user = get_user_model().objects.filter(id=payload['id']).first()
-
-        serializer = serializers.UserSerializer(user)
-
         return Response(serializer.data)
 
 

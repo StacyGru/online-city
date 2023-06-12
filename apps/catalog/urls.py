@@ -7,8 +7,8 @@ router = routers.DefaultRouter()
 # router.register('system_units', ProductListViewSet)
 
 urlpatterns = [
-    path('system_units', SystemUnitsListView.as_view()),
-    path('computer_kits', ComputerKitsListView.as_view()),
-    path('monitors', MonitorsListView.as_view()),
-    path('special_offers', SpecialOffersView.as_view()),
+    path('system_unit_list', SystemUnitListView.as_view()),
+    path('computer_kit_list', ComputerKitListView.as_view()),
+    path('monitor_list', MonitorListView.as_view()),
+    path('special_offer_list', SpecialOfferListView.as_view()),
 ]

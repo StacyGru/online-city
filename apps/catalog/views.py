@@ -1,11 +1,10 @@
-from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from . import models, serializers
 from ..orders import models
 
 
-class SystemUnitsListView(APIView):
+class SystemUnitListView(APIView):
     def get(self, request):
         products = []
         for product in models.Product.objects.filter(category='системные блоки'):
@@ -24,7 +23,7 @@ class SystemUnitsListView(APIView):
             return Response(serializer.data)
 
 
-class ComputerKitsListView(APIView):
+class ComputerKitListView(APIView):
     def get(self, request):
         products = []
         for product in models.Product.objects.filter(category='компьютеры в комплекте'):
@@ -39,7 +38,7 @@ class ComputerKitsListView(APIView):
             return Response(serializer.data)
 
 
-class MonitorsListView(APIView):
+class MonitorListView(APIView):
     def get(self, request):
         products = []
         for product in models.Product.objects.filter(category='мониторы'):
@@ -54,7 +53,7 @@ class MonitorsListView(APIView):
             return Response(serializer.data)
 
 
-class SpecialOffersView(APIView):
+class SpecialOfferListView(APIView):
     def get(self, request):
         products = []
         for product in models.Product.objects.filter(category='спецпредложения'):
