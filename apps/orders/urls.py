@@ -6,9 +6,9 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('basket_item', BasketItemView.as_view()),
+    path('basket_item/<int:pk>/', BasketItemView.as_view()),
     path('basket', BasketView.as_view()),
-    path('basket/<int:pk>/', BasketView.as_view()),
-    path('basket_list', BasketListView.as_view()),
     path('order', OrderView.as_view()),
     path('order/<int:pk>/', OrderView.as_view()),
     path('order_list', OrderListView.as_view()),

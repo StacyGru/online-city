@@ -8,7 +8,7 @@ from . import models, serializers
 from ..reg_and_auth.models import User
 
 
-class BasketView(APIView):
+class BasketItemView(APIView):
     permission_classes = [permissions.AllowAny]
 
     # добавление элемента корзины
@@ -26,6 +26,21 @@ class BasketView(APIView):
         serializer.save()
         return Response(serializer.data)
 
+    # изменение количества товара в корзине
+    def patch(self, request, pk):
+        basket_item = models.BasketItem.objects.get(id=pk)
+        if request.data['message'] == "plus":
+            basket_item_serializer = serializers.BasketItemSerializer(basket_item, data={
+                'amount': basket_item.amount + 1
+            }, partial=True)
+        else:
+            basket_item_serializer = serializers.OrderItemSerializer(basket_item, data={
+                'amount': basket_item.amount - 1
+            }, partial=True)
+        basket_item_serializer.is_valid(raise_exception=True)
+        basket_item_serializer.save()
+        return Response(basket_item_serializer.data)
+
     # удаление элемента корзины
     def delete(self, request, pk):
         basket_item = get_object_or_404(models.BasketItem.objects.all(), id=pk)
@@ -33,7 +48,7 @@ class BasketView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class BasketListView(APIView):
+class BasketView(APIView):
     permission_classes = [permissions.AllowAny]
 
     # получение списка элементов корзины
@@ -231,3 +246,18 @@ class OrderItemView(APIView):
         order_serializer.is_valid(raise_exception=True)
         order_serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    # изменение количества товара в позиции
+    def patch(self, request, pk):
+        order_item = models.OrderItem.objects.get(id=pk)
+        if request.data['message'] == "plus":
+            order_item_serializer = serializers.OrderItemSerializer(order_item, data={
+                'amount': order_item.amount + 1
+            }, partial=True)
+        else:
+            order_item_serializer = serializers.OrderItemSerializer(order_item, data={
+                'amount': order_item.amount - 1
+            }, partial=True)
+        order_item_serializer.is_valid(raise_exception=True)
+        order_item_serializer.save()
+        return Response(order_item_serializer.data)
