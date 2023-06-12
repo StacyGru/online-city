@@ -1,10 +1,10 @@
-import Year1999 from "../media/year_1999.png";
-import Delivery from "../media/delivery.png";
-import Chat from "../media/chat.png";
-import Gears from "../media/gears.png";
-import Service from "../media/service.png";
-import Wholesale from "../media/wholesale.png";
-import CatalogItem from "../components/CatalogItem";
+import Year1999 from "../../media/year_1999.png";
+import Delivery from "../../media/delivery.png";
+import Chat from "../../media/chat.png";
+import Gears from "../../media/gears.png";
+import Service from "../../media/service.png";
+import Wholesale from "../../media/wholesale.png";
+import CatalogItem from "../../components/CatalogItem";
 
 const MainPage = () => {
 

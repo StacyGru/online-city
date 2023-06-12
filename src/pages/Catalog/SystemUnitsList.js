@@ -23,7 +23,7 @@ function SystemUnitsList() {
 
     async function addBasketItem(id) {
         await fetch(
-            'http://127.0.0.1:8000/basket', {
+            'http://127.0.0.1:8000/basket_item', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

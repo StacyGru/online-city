@@ -9,7 +9,7 @@ function Checkout() {
 
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/basket_list', {
+            'http://127.0.0.1:8000/basket', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,

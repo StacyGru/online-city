@@ -27,7 +27,7 @@ function UserAccount() {
         return (
             <div className="flex flex-col items-center px-10">
                 <h1 className="text-3xl font-bold mb-10">Личный кабинет</h1>
-                <div className="w-3/4 bg-mainWhite p-10 drop-shadow-sm rounded-xl flex flex-col font-light">
+                <div className="bg-mainWhite p-10 drop-shadow-sm rounded-xl flex flex-col font-light">
                     <table className="text-left border-spacing-5">
                         <thead className="border-mainOrange border-b-2 border-opacity-50">
                         <tr>
@@ -47,10 +47,10 @@ function UserAccount() {
                                 <td>{order.order_date_and_time}</td>
                                 <td className="text-center">{order.order_items.length}</td>
                                 <td>
-                                    {order.order_items.map((order_item) => (
+                                    {order.order_items.map((orderItem) => (
                                         <div className="mb-2">
-                                            <p className="text-sm">{order_item.name}</p>
-                                            <p className="text-sm text-mainGray">{order_item.amount} шт. {order_item.price * order_item.amount} ₽</p>
+                                            <p className="text-sm">{orderItem.name}</p>
+                                            <p className="text-sm text-mainGray">{orderItem.amount} шт. {orderItem.price * orderItem.amount} ₽</p>
                                         </div>
                                     ))}
                                 </td>
@@ -99,10 +99,10 @@ function UserAccount() {
                                 <td>{order.client}</td>
                                 <td className="text-center">{order.order_items.length}</td>
                                 <td>
-                                    {order.order_items.map((order_item) => (
+                                    {order.order_items.map((orderItem) => (
                                         <div className="mb-2">
-                                            <p className="text-sm">{order_item.name}</p>
-                                            <p className="text-sm text-mainGray">{order_item.amount} шт. {order_item.price * order_item.amount} ₽</p>
+                                            <p className="text-sm">{orderItem.name}</p>
+                                            <p className="text-sm text-mainGray">{orderItem.amount} шт. {orderItem.price * orderItem.amount} ₽</p>
                                         </div>
                                     ))}
                                 </td>

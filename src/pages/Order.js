@@ -55,6 +55,23 @@ function Order() {
         window.location.reload(false);
     }
 
+    async function changeOrderItemAmount(e, id, message) {
+        e.preventDefault();
+        await fetch(
+            `http://127.0.0.1:8000/order_item/${id}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authTokens.access}`,
+                },
+                body: JSON.stringify({
+                    'message': message
+                })
+            }
+        )
+        window.location.reload(false);
+    }
+
     function orderSum() {
         let sum = 0
         order.order_items.map((orderItem) => {
@@ -112,28 +129,39 @@ function Order() {
                                     <p className="font-normal">Список товаров:</p>
                                     <table>
                                         <tbody>
-                                            {order.order_items.map((order_item) => (
+                                            {order.order_items.map((orderItem) => (
                                                 <tr>
-                                                    <td className="pl-0">{order_item.name}</td>
+                                                    <td className="pl-0">{orderItem.name}</td>
                                                     <td>
-                                                        <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                                            <img src={Minus} className="w-3"/>
-                                                        </button>
+                                                        {(orderItem.amount === 1)
+                                                            ?
+                                                                <button className="opacity-50 bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center" disabled>
+                                                                    <img src={Minus} className="w-3"/>
+                                                                </button>
+                                                            :
+                                                                <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
+                                                                        onClick={(e) => changeOrderItemAmount(e, orderItem.id, "minus")}
+                                                                >
+                                                                    <img src={Minus} className="w-3"/>
+                                                                </button>
+                                                        }
                                                     </td>
                                                     <td className="px-0">
-                                                        <h2>{order_item.amount}</h2>
+                                                        <h2>{orderItem.amount}</h2>
                                                     </td>
                                                     <td>
-                                                        <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center">
+                                                        <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
+                                                                onClick={(e) => changeOrderItemAmount(e, orderItem.id, "plus")}
+                                                        >
                                                             <img src={Plus} className="w-3"/>
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <h2>{order_item.price} ₽</h2>
+                                                        <h2>{orderItem.price} ₽</h2>
                                                     </td>
                                                     <td>
                                                         <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
-                                                                onClick={(e) => deleteOrderItem(e, order_item.id)}
+                                                                onClick={(e) => deleteOrderItem(e, orderItem.id)}
                                                         >
                                                             <img src={Plus} className="rotate-45 w-3"/>
                                                         </button>

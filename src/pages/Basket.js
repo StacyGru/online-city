@@ -12,7 +12,7 @@ function Basket(){
 
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/basket_list', {
+            'http://127.0.0.1:8000/basket', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -35,12 +35,29 @@ function Basket(){
 
     async function deleteBasketItem(id) {
         await fetch(
-            `http://127.0.0.1:8000/basket/${id}/`, {
+            `http://127.0.0.1:8000/basket_item/${id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
                 },
+            }
+        )
+        window.location.reload(false);
+    }
+
+    async function changeBasketItemAmount(e, id, message) {
+        e.preventDefault();
+        await fetch(
+            `http://127.0.0.1:8000/basket_item/${id}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authTokens.access}`,
+                },
+                body: JSON.stringify({
+                    'message': message
+                })
             }
         )
         window.location.reload(false);
@@ -61,11 +78,22 @@ function Basket(){
                                 <p className="font-light">{basketItem.short_description}</p>
                             </div>
                             <div className="flex items-center justify-center gap-5">
-                                <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                    <img src={Minus}/>
-                                </button>
+                                {(basketItem.amount === 1)
+                                    ?
+                                        <button className="opacity-50 bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center" disabled>
+                                            <img src={Minus}/>
+                                        </button>
+                                    :
+                                        <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
+                                                onClick={(e) => changeBasketItemAmount(e, basketItem.id, "minus")}
+                                        >
+                                            <img src={Minus}/>
+                                        </button>
+                                }
                                 <h2 className="text-2xl">{basketItem.amount}</h2>
-                                <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center">
+                                <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
+                                        onClick={(e) => changeBasketItemAmount(e, basketItem.id, "plus")}
+                                >
                                     <img src={Plus}/>
                                 </button>
                                 <h2 className="text-2xl mx-10 shrink-0">{basketItem.price} ₽</h2>

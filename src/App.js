@@ -2,7 +2,7 @@ import "./index.css"
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import {Route, Routes} from 'react-router-dom'
-import MainPage from "./pages/MainPage"
+import MainPage from "./pages/InfoPages/MainPage"
 import AboutUs from "./pages/InfoPages/AboutUs"
 import Contacts from "./pages/InfoPages/Contacts";
 import Payment from "./pages/InfoPages/Payment";
