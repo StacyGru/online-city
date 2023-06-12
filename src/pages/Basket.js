@@ -12,7 +12,7 @@ function Basket(){
 
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/basket_items', {
+            'http://127.0.0.1:8000/basket_list', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -35,7 +35,7 @@ function Basket(){
 
     async function deleteBasketItem(id) {
         await fetch(
-            `http://127.0.0.1:8000/delete_basket_item/${id}/`, {
+            `http://127.0.0.1:8000/basket/${id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

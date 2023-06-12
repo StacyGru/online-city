@@ -10,7 +10,7 @@ function SystemUnitsList() {
 
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/system_units', {
+            'http://127.0.0.1:8000/system_unit_list', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -23,7 +23,7 @@ function SystemUnitsList() {
 
     async function addBasketItem(id) {
         await fetch(
-            'http://127.0.0.1:8000/basket_items', {
+            'http://127.0.0.1:8000/basket', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

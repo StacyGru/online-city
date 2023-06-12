@@ -21,8 +21,10 @@ import MonitorsList from "./pages/Catalog/MonitorsList";
 import SpecialOffersList from "./pages/Catalog/SpecialOffersList";
 import {AuthProvider} from "./context/AuthContext";
 import Checkout from "./pages/Checkout";
+import Order from "./pages/Order";
 
 function App() {
+
     return (
         <div className="grid-layout text-xs lg:text-sm 2xl:text-lg font-normal text-darkBlue bg-grayWhite">
             <AuthProvider>
@@ -47,6 +49,7 @@ function App() {
                     <Route path="/special_offers" element={<SpecialOffersList/>} />
                     <Route path="/user" element={<UserAccount/>} />
                     <Route path="/checkout" element={<Checkout/>} />
+                    <Route exact path="/order/:id" element={<Order/>} />
                 </Routes>
                 <Footer/>
             </AuthProvider>

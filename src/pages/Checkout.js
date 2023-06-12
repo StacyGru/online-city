@@ -9,7 +9,7 @@ function Checkout() {
 
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/basket_items', {
+            'http://127.0.0.1:8000/basket_list', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -44,7 +44,7 @@ function Checkout() {
 
     async function submit() {
         await fetch(
-            'http://127.0.0.1:8000/orders', {
+            'http://127.0.0.1:8000/order', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
