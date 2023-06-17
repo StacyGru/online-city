@@ -13,15 +13,15 @@ const Catalog = () => {
                 <div/>
             </div>
             <div className="flex gap-10 justify-center">
-                <Link to="/computers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
+                <Link to="/catalog/computers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
                     <img src={Computer} className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Компьютеры</h1>
                 </Link>
-                <Link to="/monitors" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
+                <Link to="/catalog/monitors" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
                     <img src={Monitor} className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Мониторы</h1>
                 </Link>
-                <Link to="/special_offers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
+                <Link to="/catalog/special_offers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm rounded-xl text-center flex flex-col justify-center items-center">
                     <img src={SpecialOffer} className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Спецпредложения</h1>
                 </Link>

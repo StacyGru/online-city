@@ -7,7 +7,7 @@ import Plus from "../media/plus.png";
 
 function Order() {
 
-    const id = useParams()
+    const params = useParams()
 
     let navigate = useNavigate()
     let {authTokens, user} = useContext(AuthContext)
@@ -26,7 +26,7 @@ function Order() {
 
     const getOrder = async () => {
         let res = await fetch(
-            `http://127.0.0.1:8000/order/${id.id}/`, {
+            `http://127.0.0.1:8000/order/${params.id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -82,7 +82,7 @@ function Order() {
 
     async function save() {
         let response = await fetch(
-            `http://127.0.0.1:8000/order/${id.id}/`, {
+            `http://127.0.0.1:8000/order/${params.id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

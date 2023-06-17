@@ -3,14 +3,41 @@ import CatalogItemImg from "../../media/catalog_item.png";
 import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import {useParams} from "react-router";
 
-function SystemUnitsList() {
+function ProductList() {
     let {user, authTokens} = useContext(AuthContext)
     let [products, setProducts] = useState([])
 
+    const params = useParams()
+    let category_name = ""
+    let request = ""
+
+    switch(params.category) {
+        case 'system_units':
+            category_name = "Системные блоки"
+            request = "system_unit_list"
+            break
+
+        case 'computer_kits':
+            category_name = "Компьютеры в комплекте"
+            request = "computer_kit_list"
+            break
+
+        case 'monitors':
+            category_name = "Мониторы"
+            request = "monitor_list"
+            break
+
+        case 'special_offers':
+            category_name = "Спецпредложения"
+            request = "special_offer_list"
+            break
+    }
+
     useEffect(() => {
         fetch(
-            'http://127.0.0.1:8000/system_unit_list', {
+            `http://127.0.0.1:8000/products/${request}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${authTokens.access}`,
@@ -46,11 +73,18 @@ function SystemUnitsList() {
                 <p className="h-fit w-fit text-xs font-light text-mainGray">
                     <Link to="/catalog" className="hover:underline">Каталог товаров</Link>
                     <span> > </span>
-                    <Link to="/computers" className="hover:underline">Компьютеры</Link>
-                    <span> > </span>
-                    <Link to="/system_units" className="hover:underline">Системные блоки</Link>
+                    {((params.category === 'system_units')||(params.category === 'computer_kits'))
+                        ?
+                            <>
+                                <Link to="/catalog/computers" className="hover:underline">Компьютеры</Link>
+                                <span> > </span>
+                                <Link to={`/catalog/computers/${params.category}`} className="hover:underline">{category_name}</Link>
+                            </>
+                        :
+                            <Link to={`/catalog/${params.category}`} className="hover:underline">{category_name}</Link>
+                    }
                 </p>
-                <h1 className="text-xl lg:text-3xl font-bold mb-10 text-center">Системные блоки</h1>
+                <h1 className="text-xl lg:text-3xl font-bold mb-10 text-center">{category_name}</h1>
                 <p className="text-mainGray justify-self-end">{products.length} товара</p>
                 <div/>
             </div>
@@ -83,4 +117,4 @@ function SystemUnitsList() {
     );
 }
 
-export default SystemUnitsList;
+export default ProductList;

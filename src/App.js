@@ -14,11 +14,8 @@ import Registration from "./pages/Registration";
 import Basket from "./pages/Basket";
 import Catalog from "./pages/Catalog/Catalog";
 import CatalogComputers from "./pages/Catalog/CatalogComputers";
-import SystemUnitsList from "./pages/Catalog/SystemUnitsList";
+import ProductList from "./pages/Catalog/ProductList";
 import UserAccount from "./pages/UserAccount";
-import ComputerKitsList from "./pages/Catalog/ComputerKitsList";
-import MonitorsList from "./pages/Catalog/MonitorsList";
-import SpecialOffersList from "./pages/Catalog/SpecialOffersList";
 import {AuthProvider} from "./context/AuthContext";
 import Checkout from "./pages/Checkout";
 import Order from "./pages/Order";
@@ -41,12 +38,9 @@ function App() {
                     <Route path="/registration" element={<Registration/>} />
                     <Route path="/basket" element={<Basket/>} />
                     <Route path="/catalog" element={<Catalog/>} />
-                    <Route path="/catalog" element={<Catalog/>} />
-                    <Route path="/computers" element={<CatalogComputers/>} />
-                    <Route path="/system_units" element={<SystemUnitsList/>} />
-                    <Route path="/computer_kits" element={<ComputerKitsList/>} />
-                    <Route path="/monitors" element={<MonitorsList/>} />
-                    <Route path="/special_offers" element={<SpecialOffersList/>} />
+                    <Route path="/catalog/computers" element={<CatalogComputers/>} />
+                    <Route path="/catalog/:category" element={<ProductList/>} />
+                    <Route path="/catalog/computers/:category" element={<ProductList/>} />
                     <Route path="/user" element={<UserAccount/>} />
                     <Route path="/checkout" element={<Checkout/>} />
                     <Route exact path="/order/:id" element={<Order/>} />
