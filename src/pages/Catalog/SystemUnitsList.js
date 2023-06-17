@@ -57,7 +57,9 @@ function SystemUnitsList() {
             <div className="flex flex-wrap justify-center gap-5">
                 {products.map((product) => (
                     <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
-                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-64 m-5"/>
+                        <div className="w-64 h-64 shrink-0 grow-0 m-5">
+                            <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                        </div>
                         <Link to="catalog_item"><h2 className="hover:underline text-xl mb-5">{product.name}</h2></Link>
                         <p className="font-light mb-5 grow">{product.short_description}</p>
                         <div className="w-full flex justify-between items-center self-end">
