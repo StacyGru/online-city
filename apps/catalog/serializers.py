@@ -8,12 +8,6 @@ class ManufacturerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DiagonalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Diagonal
-        fields = '__all__'
-
-
 class ScreenResolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ScreenResolution
@@ -29,18 +23,6 @@ class MatrixTypeSerializer(serializers.ModelSerializer):
 class UpdateFrequencySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.UpdateFrequency
-        fields = '__all__'
-
-
-class CurvedScreenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.CurvedScreen
-        fields = '__all__'
-
-
-class ConnectorsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Connectors
         fields = '__all__'
 
 
@@ -101,12 +83,6 @@ class VideoCardSerializer(serializers.ModelSerializer):
 class SystemUnitFiltersSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SystemUnitFilters
-        fields = '__all__'
-
-
-class MonitorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Monitor
         fields = '__all__'
 
 

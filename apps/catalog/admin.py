@@ -7,11 +7,6 @@ class ManufacturerAdmin(admin.ModelAdmin):
     search_fields = ('id', 'name')
 
 
-class DiagonalAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
 class ScreenResolutionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
@@ -23,16 +18,6 @@ class MatrixTypeAdmin(admin.ModelAdmin):
 
 
 class UpdateFrequencyAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class CurvedScreenAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class ConnectorsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
 
@@ -53,9 +38,9 @@ class AspectRatioAdmin(admin.ModelAdmin):
 
 
 class MonitorDetailsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'connectors', 'frame_color', 'wall_mount', 'aspect_ratio')
-    search_fields = ('id', 'manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'connectors', 'frame_color', 'wall_mount', 'aspect_ratio')
-    filter_fields = ('manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'connectors', 'frame_color', 'wall_mount', 'aspect_ratio')
+    list_display = ('id', 'manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'frame_color', 'wall_mount', 'aspect_ratio')
+    search_fields = ('id', 'manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'frame_color', 'wall_mount', 'aspect_ratio')
+    filter_fields = ('manufacturer', 'diagonal', 'screen_resolution', 'matrix_type', 'update_frequency', 'curved_screen', 'frame_color', 'wall_mount', 'aspect_ratio')
 
 
 class AmountOfRAMAdmin(admin.ModelAdmin):
@@ -89,11 +74,6 @@ class SystemUnitFiltersAdmin(admin.ModelAdmin):
     filter_fields = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
 
 
-class MonitorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
 class KeyboardAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('id', 'name')
@@ -122,12 +102,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)
-admin.site.register(models.Diagonal, DiagonalAdmin)
 admin.site.register(models.ScreenResolution, ScreenResolutionAdmin)
 admin.site.register(models.MatrixType, MatrixTypeAdmin)
 admin.site.register(models.UpdateFrequency, UpdateFrequencyAdmin)
-admin.site.register(models.CurvedScreen, CurvedScreenAdmin)
-admin.site.register(models.Connectors, ConnectorsAdmin)
 admin.site.register(models.FrameColor, FrameColorAdmin)
 admin.site.register(models.WallMount, WallMountAdmin)
 admin.site.register(models.AspectRatio, AspectRatioAdmin)
@@ -140,7 +117,6 @@ admin.site.register(models.SSDVolume, SSDVolumeAdmin)
 admin.site.register(models.VideoCard, VideoCardAdmin)
 admin.site.register(models.SystemUnitFilters, SystemUnitFiltersAdmin)
 
-admin.site.register(models.Monitor, MonitorAdmin)
 admin.site.register(models.Keyboard, KeyboardAdmin)
 admin.site.register(models.Mouse, MouseAdmin)
 admin.site.register(models.Speakers, SpeakersAdmin)
