@@ -37,7 +37,7 @@ const Header = () => {
                         </Link>
                         <div className="ml-5 w-full border-grayWhite border-2 rounded-xl px-3 flex justify-between items-center">
                             <input className="grow bg-darkBlue font-light" placeholder="Поиск..."/>
-                            <img src={Search} className="h-5 my-auto ml-3"/>
+                            <Link to="/search"><img src={Search} className="h-5 my-auto ml-3"/></Link>
                         </div>
                     </div>
                     <div className="lg:hidden flex gap-x-5 mt-3">
