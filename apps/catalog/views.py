@@ -17,7 +17,18 @@ class ProductListView(APIView):
             category = "мониторы"
         elif pk == "special_offer_list":
             category = "спецпредложения"
-        for product in Product.objects.filter(category=category):
+        elif pk == "main_page":
+            product = Product.objects.filter(category="системные блоки").first()
+            products.append(serializers.ProductSerializer(product).data)
+            product = Product.objects.filter(category="компьютеры в комплекте").first()
+            products.append(serializers.ProductSerializer(product).data)
+            product = Product.objects.filter(category="мониторы").first()
+            products.append(serializers.ProductSerializer(product).data)
+            product = Product.objects.filter(category="спецпредложения").first()
+            products.append(serializers.ProductSerializer(product).data)
+        for product in Product.objects.filter(category=category).order_by('price'):
+            # if (product.id != 5) & (product.id != 20):
+            # if (product.id == 11) | (product.id == 12) | (product.id == 14) | (product.id == 16) | (product.id == 18):
             serializer = serializers.ProductSerializer(product)
             new_serializer_data = serializer.data
             basket_item = BasketItem.objects.filter(client=self.request.user.id, product=product).first()
@@ -25,6 +36,22 @@ class ProductListView(APIView):
                 new_serializer_data['basket_amount'] = basket_item.amount
             products.append(new_serializer_data)
         return Response(products)
+
+
+class ProductView(APIView):
+    def get(self, request, pk, *args, **kwargs):
+        details_serializer = ""
+        product = Product.objects.get(id=pk)
+        serializer = serializers.ProductSerializer(product)
+        if product.system_unit:
+            details_serializer = serializers.SystemUnitDetailsSerializer(product.system_unit).data
+        if product.monitor:
+            details_serializer = serializers.MonitorDetailsSerializer(product.monitor)
+        response = {
+            "product": serializer.data,
+            "details": details_serializer
+        }
+        return Response(response)
 
 
 class AmountOfRAMListView(APIView):
@@ -41,24 +68,6 @@ class ProcessorSeriesListView(APIView):
         list = []
         for item in models.ProcessorSeries.objects.all():
             serializer = serializers.ProcessorSeriesSerializer(item)
-            list.append(serializer.data)
-        return Response(list)
-
-
-class HDDVolumeListView(APIView):
-    def get(self, request):
-        list = []
-        for item in models.HDDVolume.objects.all():
-            serializer = serializers.HDDVolumeSerializer(item)
-            list.append(serializer.data)
-        return Response(list)
-
-
-class SSDVolumeListView(APIView):
-    def get(self, request):
-        list = []
-        for item in models.SSDVolume.objects.all():
-            serializer = serializers.SSDVolumeSerializer(item)
             list.append(serializer.data)
         return Response(list)
 

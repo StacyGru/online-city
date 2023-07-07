@@ -53,14 +53,14 @@ class ProcessorSeriesAdmin(admin.ModelAdmin):
     search_fields = ('id', 'name')
 
 
-class HDDVolumeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
-
-
-class SSDVolumeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    search_fields = ('id', 'name')
+# class HDDVolumeAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'name')
+#     search_fields = ('id', 'name')
+#
+#
+# class SSDVolumeAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'name')
+#     search_fields = ('id', 'name')
 
 
 class VideoCardAdmin(admin.ModelAdmin):
@@ -68,7 +68,7 @@ class VideoCardAdmin(admin.ModelAdmin):
     search_fields = ('id', 'name')
 
 
-class SystemUnitFiltersAdmin(admin.ModelAdmin):
+class SystemUnitDetailsAdmin(admin.ModelAdmin):
     list_display = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
     search_fields = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
     filter_fields = ('id', 'purpose', 'amount_of_ram', 'processor_series', 'hdd_volume', 'ssd_volume', 'video_card')
@@ -112,10 +112,8 @@ admin.site.register(models.MonitorDetails, MonitorDetailsAdmin)
 
 admin.site.register(models.AmountOfRAM, AmountOfRAMAdmin)
 admin.site.register(models.ProcessorSeries, ProcessorSeriesAdmin)
-admin.site.register(models.HDDVolume, HDDVolumeAdmin)
-admin.site.register(models.SSDVolume, SSDVolumeAdmin)
 admin.site.register(models.VideoCard, VideoCardAdmin)
-admin.site.register(models.SystemUnitFilters, SystemUnitFiltersAdmin)
+admin.site.register(models.SystemUnitDetails, SystemUnitDetailsAdmin)
 
 admin.site.register(models.Keyboard, KeyboardAdmin)
 admin.site.register(models.Mouse, MouseAdmin)

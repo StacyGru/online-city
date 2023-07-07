@@ -183,47 +183,49 @@ class OrderListView(APIView):
     def get(self, request, *args, **kwargs):
         orders = []
         if self.request.user.role == "клиент":
-            for order in models.Order.objects.filter(client=self.request.user.id):
-                order_items = []
-                for order_item in models.OrderItem.objects.filter(order=order.id):
-                    product = order_item.product
-                    order_item_serializer = {
-                        'name': product.name,
-                        'price': product.price,
-                        'amount': order_item.amount
+            for order in models.Order.objects.filter(client=self.request.user.id).order_by('-order_date_and_time'):
+                if order.id != 16:
+                    order_items = []
+                    for order_item in models.OrderItem.objects.filter(order=order.id):
+                        product = order_item.product
+                        order_item_serializer = {
+                            'name': product.name,
+                            'price': product.price,
+                            'amount': order_item.amount
+                        }
+                        order_items.append(order_item_serializer)
+                    order_serializer = {
+                        "id": order.id,
+                        "order_date_and_time": order.order_date_and_time.strftime("%d.%m.%Y %H:%M"),
+                        "order_items": order_items,
+                        "sum": order.sum,
+                        "delivery": order.delivery,
+                        "status": order.status,
                     }
-                    order_items.append(order_item_serializer)
-                order_serializer = {
-                    "id": order.id,
-                    "order_date_and_time": order.order_date_and_time.strftime("%d.%m.%Y %H:%M"),
-                    "order_items": order_items,
-                    "sum": order.sum,
-                    "delivery": order.delivery,
-                    "status": order.status,
-                }
-                orders.append(order_serializer)
+                    orders.append(order_serializer)
         else:
-            for order in models.Order.objects.all():
-                order_items = []
-                for order_item in models.OrderItem.objects.filter(order=order.id):
-                    product = order_item.product
-                    order_item_serializer = {
-                        'name': product.name,
-                        'price': product.price,
-                        'amount': order_item.amount
+            for order in models.Order.objects.all().order_by('-order_date_and_time'):
+                if order.id != 16:
+                    order_items = []
+                    for order_item in models.OrderItem.objects.filter(order=order.id):
+                        product = order_item.product
+                        order_item_serializer = {
+                            'name': product.name,
+                            'price': product.price,
+                            'amount': order_item.amount
+                        }
+                        order_items.append(order_item_serializer)
+                    client = User.objects.get(email=order.client)
+                    order_serializer = {
+                        "id": order.id,
+                        "client": client.name + " " + client.surname,
+                        "order_date_and_time": order.order_date_and_time.strftime("%d.%m.%Y %H:%M"),
+                        "order_items": order_items,
+                        "sum": order.sum,
+                        "delivery": order.delivery,
+                        "status": order.status,
                     }
-                    order_items.append(order_item_serializer)
-                client = User.objects.get(email=order.client)
-                order_serializer = {
-                    "id": order.id,
-                    "client": client.name + " " + client.surname,
-                    "order_date_and_time": order.order_date_and_time.strftime("%d.%m.%Y %H:%M"),
-                    "order_items": order_items,
-                    "sum": order.sum,
-                    "delivery": order.delivery,
-                    "status": order.status,
-                }
-                orders.append(order_serializer)
+                    orders.append(order_serializer)
         return Response(orders)
 
 

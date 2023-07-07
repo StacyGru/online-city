@@ -108,22 +108,6 @@ class ProcessorSeries(models.Model):
         db_table = 'processor_series'
 
 
-class HDDVolume(models.Model):
-    name = models.CharField(max_length=150, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'hdd_volume'
-
-
-class SSDVolume(models.Model):
-    name = models.CharField(max_length=150, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'ssd_volume'
-
-
 class VideoCard(models.Model):
     name = models.CharField(max_length=150, null=True)
 
@@ -132,12 +116,12 @@ class VideoCard(models.Model):
         db_table = 'video_card'
 
 
-class SystemUnitFilters(models.Model):
+class SystemUnitDetails(models.Model):
     purpose = models.CharField(choices=PURPOSE_CHOICES, max_length=150, null=True)
     amount_of_ram = models.ForeignKey(AmountOfRAM, models.DO_NOTHING)
     processor_series = models.ForeignKey(ProcessorSeries, models.DO_NOTHING)
-    hdd_volume = models.ForeignKey(HDDVolume, models.DO_NOTHING)
-    ssd_volume = models.ForeignKey(SSDVolume, models.DO_NOTHING)
+    hdd_volume = models.IntegerField(null=True, blank=True)
+    ssd_volume = models.IntegerField(null=True, blank=True)
     video_card = models.ForeignKey(VideoCard, models.DO_NOTHING)
 
     class Meta:
@@ -173,7 +157,7 @@ class Speakers(models.Model):
 
 
 class ComputerKitDetails(models.Model):
-    system_unit = models.ForeignKey(SystemUnitFilters, models.DO_NOTHING)
+    system_unit = models.ForeignKey(SystemUnitDetails, models.DO_NOTHING)
     monitor = models.ForeignKey(MonitorDetails, models.DO_NOTHING)
     keyboard = models.ForeignKey(Keyboard, models.DO_NOTHING)
     mouse = models.ForeignKey(Mouse, models.DO_NOTHING)
@@ -195,7 +179,7 @@ class Product(models.Model):
     picture = models.ImageField(blank=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=150)
     computer_kit = models.ForeignKey(ComputerKitDetails, models.DO_NOTHING, blank=True, null=True)
-    system_unit = models.ForeignKey(SystemUnitFilters, models.DO_NOTHING, blank=True, null=True)
+    system_unit = models.ForeignKey(SystemUnitDetails, models.DO_NOTHING, blank=True, null=True, db_constraint=False)
     monitor = models.ForeignKey(MonitorDetails, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:

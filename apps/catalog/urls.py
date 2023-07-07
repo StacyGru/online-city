@@ -6,10 +6,9 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('products/<str:pk>/', ProductListView.as_view()),
+    path('product/<int:pk>/', ProductView.as_view()),
     path('amount_of_ram_list', AmountOfRAMListView.as_view()),
     path('processor_series_list', ProcessorSeriesListView.as_view()),
-    path('hdd_volume_list', HDDVolumeListView.as_view()),
-    path('ssd_volume_list', SSDVolumeListView.as_view()),
     path('video_card_list', VideoCardListView.as_view()),
     path('manufacturer_list', ManufacturerListView.as_view()),
     path('screen_resolution_list', ScreenResolutionListView.as_view()),

@@ -62,16 +62,16 @@ class ProcessorSeriesSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class HDDVolumeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.HDDVolume
-        fields = '__all__'
-
-
-class SSDVolumeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.SSDVolume
-        fields = '__all__'
+# class HDDVolumeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.HDDVolume
+#         fields = '__all__'
+#
+#
+# class SSDVolumeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.SSDVolume
+#         fields = '__all__'
 
 
 class VideoCardSerializer(serializers.ModelSerializer):
@@ -80,9 +80,9 @@ class VideoCardSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SystemUnitFiltersSerializer(serializers.ModelSerializer):
+class SystemUnitDetailsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.SystemUnitFilters
+        model = models.SystemUnitDetails
         fields = '__all__'
 
 
