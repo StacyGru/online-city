@@ -185,24 +185,27 @@ function ProductList() {
                     }
                 </p>
                 <h1 className="text-xl lg:text-3xl font-bold mb-10 text-center">{category_name}</h1>
-                <p className="text-mainGray justify-self-end">{products.length} товара</p>
+                <p className="text-mainGray justify-self-end">{products.length} товаров</p>
                 <div/>
             </div>
-            <div className="flex flex-row gap-14 justify-center">
-                <div className="h-fit bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col font-light">
-                    <div className="flex items-center gap-3">
-                        <p className="font-normal mb-2">Цена, ₽</p>
-                        <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
-                    </div>
-                    <div className="flex gap-2">
-                        <label htmlFor="min">от</label>
-                        <input id="min" className="bg-grayWhite drop-shadow-sm rounded-xl px-3 py-1 w-20 mr-2"/>
-                        <label htmlFor="max">до</label>
-                        <input id="max" className="bg-grayWhite drop-shadow-sm rounded-xl px-3 py-1 w-20"/>
-                    </div>
+            {products
+                ?
+                    <div className="flex flex-row gap-14 justify-center">
+                    <div className="h-fit bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col font-light">
+                        <div className="flex items-center gap-3">
+                            <p className="font-normal mb-2">Цена, ₽</p>
+                            <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                        </div>
+                        <div className="flex gap-2">
+                            <label htmlFor="min">от</label>
+                            <input id="min" className="bg-grayWhite drop-shadow-sm rounded-xl px-3 py-1 w-20 mr-2"/>
+                            <label htmlFor="max">до</label>
+                            <input id="max"
+                                   className="bg-grayWhite drop-shadow-sm rounded-xl px-3 py-1 w-20"/>
+                        </div>
 
-                    {((params.category === 'system_units')||(params.category === 'computer_kits'))
-                        ?
+                        {((params.category === 'system_units')||(params.category === 'computer_kits'))
+                            ?
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Предназначение</p>
@@ -292,12 +295,12 @@ function ProductList() {
                                     </div>
                                 ))}
                             </>
-                        :
+                            :
                             null
-                    }
+                        }
 
-                    {(params.category === 'monitors')
-                        ?
+                        {(params.category === 'monitors')
+                            ?
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Производитель</p>
@@ -310,12 +313,12 @@ function ProductList() {
                                     </div>
                                 ))}
                             </>
-                        :
+                            :
                             null
-                    }
+                        }
 
-                    {((params.category === 'monitors')||(params.category === 'computer_kits'))
-                        ?
+                        {((params.category === 'monitors')||(params.category === 'computer_kits'))
+                            ?
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Диагональ экрана</p>
@@ -364,12 +367,12 @@ function ProductList() {
                                     </div>
                                 ))}
                             </>
-                        :
+                            :
                             null
-                    }
+                        }
 
-                    {(params.category === 'monitors')
-                        ?
+                        {(params.category === 'monitors')
+                            ?
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Тип матрицы</p>
@@ -428,62 +431,66 @@ function ProductList() {
                                     </div>
                                 ))}
                             </>
-                        :
+                            :
                             null
-                    }
+                        }
 
 
-                </div>
-                <div className="flex flex-col gap-5">
-                    <div className="flex gap-5 font-light items-center">
-                        <p className="font-normal">Сортировка:</p>
-                        <button className="bg-mainOrange drop-shadow-sm rounded-xl h-fit py-2 px-3"
-                                // onClick={toggleDelivery}
-                        >
-                            <p>сначала недорогие</p>
-                        </button>
-                        <button className="bg-grayWhite drop-shadow-sm rounded-xl h-fit py-2 px-3"
-                                // onClick={toggleDelivery}
-                        >
-                            <p>сначала дорогие</p>
-                        </button>
                     </div>
-                    <div className="grid grid-cols-3 gap-5">
-                        {products.map((product) => (
-                            <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
-                                <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                                    <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
-                                </div>
-                                {((params.category === 'system_units')||(params.category === 'computer_kits'))
-                                    ?
+                    <div className="flex flex-col gap-5">
+                        <div className="flex gap-5 font-light items-center">
+                            <p className="font-normal">Сортировка:</p>
+
+                            <button className="bg-grayWhite drop-shadow-sm rounded-xl h-fit py-2 px-3">
+                            {/*    // onClick={toggleDelivery}*/}
+
+                                <p>сначала недорогие</p>
+                            </button>
+                            <button className="bg-grayWhite drop-shadow-sm rounded-xl h-fit py-2 px-3"
+                                // onClick={toggleDelivery}
+                            >
+                                <p>сначала дорогие</p>
+                            </button>
+                        </div>
+                        <div className="grid grid-cols-3 gap-5">
+                            {products.map((product) => (
+                                <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
+                                    <div className="w-64 h-64 shrink-0 grow-0 m-5">
+                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                                    </div>
+                                    {((params.category === 'system_units')||(params.category === 'computer_kits'))
+                                        ?
                                         <Link to={`/catalog/computers/${params.category}/${product.id}`}><h2 className="hover:underline text-xl mb-5">{product.name}</h2></Link>
-                                    :
-                                    <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline text-xl mb-5">{product.name}</h2></Link>
-                                }
-                                <p className="font-light mb-5 grow">{product.short_description}</p>
-                                <div className="w-full flex justify-between items-center self-end">
-                                    <h2 className="text-2xl">{product.price} ₽</h2>
-                                    {product.basket_amount ?
-                                        <Link to="/basket" className="bg-grayWhite h-12 px-4 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                            <p className="whitespace-nowrap">В корзине</p>
-                                        </Link>
                                         :
-                                        <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
-                                                onClick={() => addBasketItem(product.id)}
-                                        >
-                                            <img src={Basket} className="h-8"/>
-                                        </button>
+                                        <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline text-xl mb-5">{product.name}</h2></Link>
                                     }
+                                    <p className="font-light mb-5 grow">{product.short_description}</p>
+                                    <div className="w-full flex justify-between items-center self-end">
+                                        <h2 className="text-2xl">{product.price} ₽</h2>
+                                        {product.basket_amount ?
+                                            <Link to="/basket" className="bg-grayWhite h-12 px-4 drop-shadow-sm rounded-xl flex items-center justify-center">
+                                                <p className="whitespace-nowrap">В корзине</p>
+                                            </Link>
+                                            :
+                                            <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
+                                                    onClick={() => addBasketItem(product.id)}
+                                            >
+                                                <img src={Basket} className="h-8"/>
+                                            </button>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        <button className="w-fit bg-mainWhite hover:bg-mainOrange drop-shadow-sm rounded-xl h-fit py-3 px-5 mx-auto"
+                            // onClick={toggleDelivery}
+                        >Показать ещё
+                        </button>
                     </div>
-                    <button className="w-fit bg-mainWhite hover:bg-mainOrange drop-shadow-sm rounded-xl h-fit py-3 px-5 mx-auto"
-                        // onClick={toggleDelivery}
-                    >Показать ещё
-                    </button>
                 </div>
-            </div>
+                :
+                    null
+            }
         </div>
     );
 }

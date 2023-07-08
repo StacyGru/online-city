@@ -29,6 +29,9 @@ module.exports = {
       },
       padding: {
         '1/10': '10%',
+      },
+      borderWidth: {
+        '3': '3px',
       }
     },
   },

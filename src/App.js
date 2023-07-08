@@ -19,6 +19,9 @@ import UserAccount from "./pages/UserAccount";
 import {AuthProvider} from "./context/AuthContext";
 import Checkout from "./pages/Checkout";
 import Order from "./pages/Order";
+import Product from "./pages/Catalog/Product";
+import ProductForm from "./pages/ProductForm";
+import Search from "./pages/Catalog/Search";
 
 function App() {
 
@@ -44,6 +47,11 @@ function App() {
                     <Route path="/user" element={<UserAccount/>} />
                     <Route path="/checkout" element={<Checkout/>} />
                     <Route exact path="/order/:id" element={<Order/>} />
+                    <Route exact path="/catalog/:category/:id" element={<Product/>} />
+                    <Route exact path="/catalog/computers/:category/:id" element={<Product/>} />
+                    <Route exact path="/product/system_unit/:id" element={<ProductForm/>} />
+                    <Route exact path="/system_unit/add" element={<ProductForm/>} />
+                    <Route exact path="/search" element={<Search/>} />
                 </Routes>
                 <Footer/>
             </AuthProvider>
