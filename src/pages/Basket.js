@@ -10,8 +10,8 @@ function Basket(){
     let {authTokens, user} = useContext(AuthContext)
     let [basketItems, setBasketItems] = useState([])
 
-    useEffect(() => {
-        fetch(
+    const getBasket = async () => {
+        await fetch(
             'http://127.0.0.1:8000/basket', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,6 +21,10 @@ function Basket(){
         )
             .then(res => res.json())
             .then(data => setBasketItems(data))
+    }
+
+    useEffect(() => {
+        getBasket();
     }, [])
 
     console.log(basketItems)
@@ -43,7 +47,7 @@ function Basket(){
                 },
             }
         )
-        window.location.reload(false);
+        getBasket();
     }
 
     async function changeBasketItemAmount(e, id, message) {
@@ -60,7 +64,7 @@ function Basket(){
                 })
             }
         )
-        window.location.reload(false);
+        getBasket();
     }
 
     return (

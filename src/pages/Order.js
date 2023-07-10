@@ -52,7 +52,7 @@ function Order() {
                 },
             }
         )
-        window.location.reload(false);
+        getOrder();
     }
 
     async function changeOrderItemAmount(e, id, message) {
@@ -69,7 +69,7 @@ function Order() {
                 })
             }
         )
-        window.location.reload(false);
+        getOrder();
     }
 
     function orderSum() {
