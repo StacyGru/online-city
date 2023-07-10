@@ -463,7 +463,7 @@ function ProductList() {
                         </div>
                         <div className="grid grid-cols-3 gap-5">
                             {products.map((product) => (
-                                <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
+                                <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-64 h-64 shrink-0 grow-0 m-5">
                                         <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
                                     </div>
@@ -477,11 +477,11 @@ function ProductList() {
                                     <div className="w-full flex justify-between items-center self-end">
                                         <h2 className="text-2xl">{product.price} ₽</h2>
                                         {product.basket_amount ?
-                                            <Link to="/basket" className="bg-grayWhite h-12 px-4 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                                <p className="whitespace-nowrap">В корзине</p>
+                                            <Link to="/basket" className="data-hover bg-grayWhite hover:bg-mainOrange h-12 w-24 drop-shadow-sm rounded-xl flex items-center justify-center duration-500">
+                                                <span className="whitespace-nowrap">В корзине</span>
                                             </Link>
                                             :
-                                            <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
+                                            <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center hover:scale-110 duration-500"
                                                     onClick={() => addBasketItem(product.id)}
                                             >
                                                 <img src={Basket} className="h-8"/>
@@ -491,7 +491,7 @@ function ProductList() {
                                 </div>
                             ))}
                         </div>
-                        <button className="w-fit bg-mainWhite hover:bg-mainOrange drop-shadow-sm rounded-xl h-fit py-3 px-5 mx-auto"
+                        <button className="w-fit bg-mainWhite hover:bg-mainOrange hover:text-grayWhite drop-shadow-sm rounded-xl h-fit py-3 px-5 mx-auto duration-300"
                             // onClick={toggleDelivery}
                         >Показать ещё
                         </button>

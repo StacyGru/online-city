@@ -125,6 +125,15 @@ select {
     margin-top: 10px;
 }
 
+.data-hover:hover span {
+    display: none;
+}
+
+.data-hover:hover:before {
+    content: "Перейти";
+    color: #F5F5F5;
+}
+
 @media (min-width: 1024px) {
     .grid-labels
     {

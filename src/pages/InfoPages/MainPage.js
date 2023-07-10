@@ -4,7 +4,6 @@ import Chat from "../../media/chat.png";
 import Gears from "../../media/gears.png";
 import Service from "../../media/service.png";
 import Wholesale from "../../media/wholesale.png";
-import CatalogItem from "../../components/CatalogItem";
 import CatalogItemImg from "../../media/catalog_item.png";
 import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
@@ -59,7 +58,7 @@ function MainPage() {
             <h1 className="text-3xl font-bold mb-10">Популярные товары</h1>
             <div className="flex flex-wrap justify-evenly gap-5">
                 {products.map((product) => (
-                    <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
+                    <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center hover:drop-shadow-lg duration-300">
                         <div className="w-64 h-64 shrink-0 grow-0 m-5">
                             <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
                         </div>

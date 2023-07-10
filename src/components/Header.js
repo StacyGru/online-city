@@ -23,15 +23,15 @@ const Header = () => {
 
                 <div className="w-1/2 md:w-2/3 2xl:w-2/5 3xl:w-1/3 flex flex-col justify-center px-5">
                     <ul className="flex justify-between">
-                        <li className="inline"><Link to="/about_us">О компании</Link></li>
-                        <li className="inline"><Link to="/contacts">Контакты</Link></li>
-                        <li className="inline"><Link to="/payment">Оплата</Link></li>
-                        <li className="inline"><Link to="/delivery">Доставка</Link></li>
-                        <li className="inline"><Link to="/guarantees">Гарантии</Link></li>
-                        <li className="inline"><Link to="/for_wholesalers">Оптовикам</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/about_us">О компании</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/contacts">Контакты</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/payment">Оплата</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/delivery">Доставка</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/guarantees">Гарантии</Link></li>
+                        <li className="inline hover:text-mainOrange duration-500"><Link to="/for_wholesalers">Оптовикам</Link></li>
                     </ul>
                     <div className="flex mt-3">
-                        <Link to="/catalog" className="bg-mainOrange px-5 py-2 rounded-xl flex justify-center items-center">
+                        <Link to="/catalog" className="bg-mainOrange px-5 py-2 rounded-xl flex justify-center items-center hover:scale-110 duration-500">
                             <img src={BurgerMenu} className="h-5 mr-3"/>
                             <p>Каталог</p>
                         </Link>
