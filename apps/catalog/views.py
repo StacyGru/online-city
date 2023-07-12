@@ -17,24 +17,34 @@ class ProductListView(APIView):
             category = "мониторы"
         elif pk == "special_offer_list":
             category = "спецпредложения"
-        elif pk == "main_page":
+        if pk == "main_page":
+            main_page = []
             product = Product.objects.filter(category="системные блоки").first()
-            products.append(serializers.ProductSerializer(product).data)
+            main_page.append(product)
             product = Product.objects.filter(category="компьютеры в комплекте").first()
-            products.append(serializers.ProductSerializer(product).data)
+            main_page.append(product)
             product = Product.objects.filter(category="мониторы").first()
-            products.append(serializers.ProductSerializer(product).data)
+            main_page.append(product)
             product = Product.objects.filter(category="спецпредложения").first()
-            products.append(serializers.ProductSerializer(product).data)
-        for product in Product.objects.filter(category=category).order_by('price'):
-            # if (product.id != 5) & (product.id != 20):
-            # if (product.id == 11) | (product.id == 12) | (product.id == 14) | (product.id == 16) | (product.id == 18):
-            serializer = serializers.ProductSerializer(product)
-            new_serializer_data = serializer.data
-            basket_item = BasketItem.objects.filter(client=self.request.user.id, product=product).first()
-            if basket_item:
-                new_serializer_data['basket_amount'] = basket_item.amount
-            products.append(new_serializer_data)
+            main_page.append(product)
+            for product in main_page:
+                serializer = serializers.ProductSerializer(product)
+                new_serializer_data = serializer.data
+                basket_item = BasketItem.objects.filter(client=self.request.user.id, product=product).first()
+                if basket_item:
+                    new_serializer_data['basket_amount'] = basket_item.amount
+                products.append(new_serializer_data)
+            return Response(products)
+        else:
+            for product in Product.objects.filter(category=category).order_by('price'):
+                # if (product.id != 5) & (product.id != 20):
+                # if (product.id == 11) | (product.id == 12) | (product.id == 14) | (product.id == 16) | (product.id == 18):
+                serializer = serializers.ProductSerializer(product)
+                new_serializer_data = serializer.data
+                basket_item = BasketItem.objects.filter(client=self.request.user.id, product=product).first()
+                if basket_item:
+                    new_serializer_data['basket_amount'] = basket_item.amount
+                products.append(new_serializer_data)
         return Response(products)
 
 
