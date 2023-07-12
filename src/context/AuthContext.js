@@ -54,7 +54,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async () => {
         if (authTokens) {
-            console.log('Update token called!')
+            // console.log('Update token called!')
             let response = await fetch(
                 'http://127.0.0.1:8000/api/token/refresh/', {
                     method: 'POST',
@@ -92,12 +92,12 @@ export const AuthProvider = ({children}) => {
             updateToken()
         }
 
-        let fourMinutes = 1000 * 600 * 4
+        let lifetime = 1000 * 600 * 59
         let interval = setInterval(() => {
             if (authTokens) {
                 updateToken()
             }
-        }, fourMinutes)
+        }, lifetime)
         return () => clearInterval(interval)
     }, [authTokens, loading])
 
