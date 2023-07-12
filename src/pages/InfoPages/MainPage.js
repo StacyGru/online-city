@@ -6,25 +6,69 @@ import Service from "../../media/service.png";
 import Wholesale from "../../media/wholesale.png";
 import CatalogItemImg from "../../media/catalog_item.png";
 import Basket from "../../media/basket.png";
-import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import AuthContext from "../../context/AuthContext";
 
 function MainPage() {
 
+    let {user, authTokens} = useContext(AuthContext)
     let [products, setProducts] = useState([])
+    let navigate = useNavigate()
+
+    const getProductList = async () => {
+        if (authTokens) {
+            await fetch(
+                `http://127.0.0.1:8000/products/main_page/`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                }
+            )
+                .then(res => res.json())
+                .then(data => setProducts(data));
+        }
+        else {
+            await fetch(
+                `http://127.0.0.1:8000/products/main_page/`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+                .then(res => res.json())
+                .then(data => setProducts(data));
+        }
+    }
 
     useEffect(() => {
-        fetch(
-            `http://127.0.0.1:8000/products/main_page/`, {
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     'Authorization': `Bearer ${authTokens.access}`,
-                // },
-            }
-        )
-            .then(res => res.json())
-            .then(data => setProducts(data));
+        getProductList();
     }, [])
+
+    console.log(products)
+
+    async function addBasketItem(id) {
+        if (authTokens) {
+            await fetch(
+                'http://127.0.0.1:8000/basket_item', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                    body: JSON.stringify({
+                        'client': user.id,
+                        'product': id
+                    })
+                }
+            )
+           getProductList();
+        }
+        else {
+            navigate('/login')
+        }
+    }
 
     return (
         <div className="flex flex-col grow items-center px-1/10">
@@ -67,12 +111,12 @@ function MainPage() {
                         <div className="w-full flex justify-between items-center self-end">
                             <h2 className="text-2xl">{product.price} ₽</h2>
                             {product.basket_amount ?
-                                <Link to="/basket" className="bg-grayWhite h-12 px-4 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                    <p className="whitespace-nowrap">В корзине</p>
+                                <Link to="/basket" className="data-hover bg-grayWhite hover:bg-mainOrange h-12 w-24 drop-shadow-sm rounded-xl flex items-center justify-center duration-500">
+                                    <span className="whitespace-nowrap">В корзине</span>
                                 </Link>
                                 :
-                                <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
-                                        // onClick={() => addBasketItem(product.id)}
+                                <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center hover:scale-110 duration-500"
+                                        onClick={() => addBasketItem(product.id)}
                                 >
                                     <img src={Basket} className="h-8"/>
                                 </button>

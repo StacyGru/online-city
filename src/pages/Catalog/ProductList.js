@@ -1,12 +1,13 @@
 import React, {useContext, useEffect, useState} from "react"
 import CatalogItemImg from "../../media/catalog_item.png";
 import Basket from "../../media/basket.png";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import {useParams} from "react-router";
 import Arrow from "../../media/arrow.png";
 
 function ProductList() {
+    let navigate = useNavigate()
     let {user, authTokens} = useContext(AuthContext)
     let [products, setProducts] = useState([])
     let [amountOfRAM, setAmountOfRAM] = useState([])
@@ -45,22 +46,38 @@ function ProductList() {
             break
     }
 
+    const getProductList = async () => {
+        if (authTokens) {
+            await fetch(
+                `http://127.0.0.1:8000/products/${request}/`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                }
+            )
+                .then(res => res.json())
+                .then(data => setProducts(data));
+        }
+        else {
+            await fetch(
+                `http://127.0.0.1:8000/products/${request}/`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+                .then(res => res.json())
+                .then(data => setProducts(data));
+        }
+    }
+
     useEffect(() => {
-        fetch(
-            `http://127.0.0.1:8000/products/${request}/`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
-                },
-            }
-        )
-            .then(res => res.json())
-            .then(data => setProducts(data));
+       getProductList()
         fetch(
             "http://127.0.0.1:8000/amount_of_ram_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -70,7 +87,6 @@ function ProductList() {
             "http://127.0.0.1:8000/processor_series_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -80,7 +96,6 @@ function ProductList() {
             "http://127.0.0.1:8000/video_card_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -90,7 +105,6 @@ function ProductList() {
             "http://127.0.0.1:8000/manufacturer_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -100,7 +114,6 @@ function ProductList() {
             "http://127.0.0.1:8000/screen_resolution_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -110,7 +123,6 @@ function ProductList() {
             "http://127.0.0.1:8000/matrix_type_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -120,7 +132,6 @@ function ProductList() {
             "http://127.0.0.1:8000/frame_color_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -130,7 +141,6 @@ function ProductList() {
             "http://127.0.0.1:8000/wall_mount_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -140,7 +150,6 @@ function ProductList() {
             "http://127.0.0.1:8000/aspect_ratio_list", {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
                 },
             }
         )
@@ -149,29 +158,25 @@ function ProductList() {
     }, [])
 
     async function addBasketItem(id) {
-        await fetch(
-            'http://127.0.0.1:8000/basket_item', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
-                },
-                body: JSON.stringify({
-                    'client': user.id,
-                    'product': id
-                })
-            }
-        )
-        fetch(
-            `http://127.0.0.1:8000/products/${request}/`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authTokens.access}`,
-                },
-            }
-        )
-            .then(res => res.json())
-            .then(data => setProducts(data));
+        if (authTokens) {
+            await fetch(
+                'http://127.0.0.1:8000/basket_item', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authTokens.access}`,
+                    },
+                    body: JSON.stringify({
+                        'client': user.id,
+                        'product': id
+                    })
+                }
+            )
+            getProductList()
+        }
+        else {
+            navigate('/login')
+        }
     }
 
     console.log(products)
