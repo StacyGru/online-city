@@ -451,7 +451,7 @@ function ProductList() {
 
 
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 justify-start">
                         <div className="flex gap-5 font-light items-center">
                             <p className="font-normal">Сортировка:</p>
 
@@ -466,7 +466,7 @@ function ProductList() {
                                 <p>сначала дорогие</p>
                             </button>
                         </div>
-                        <div className="grid grid-cols-3 gap-5">
+                        <div className="grid grid-cols-3 gap-5 min-width">
                             {products.map((product) => (
                                 <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-64 h-64 shrink-0 grow-0 m-5">

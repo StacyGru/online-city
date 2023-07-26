@@ -134,6 +134,10 @@ select {
     color: #F5F5F5;
 }
 
+.min-width {
+    min-width: 56.5rem;
+}
+
 @media (min-width: 1024px) {
     .grid-labels
     {
