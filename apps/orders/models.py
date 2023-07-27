@@ -1,6 +1,6 @@
 from django.db import models
 
-from project.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL
 from ..catalog.models import Product
 
 
