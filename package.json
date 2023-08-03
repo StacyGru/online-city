@@ -6,7 +6,6 @@
   "dependencies": {
     "@expo-google-fonts/oswald": "^0.2.3",
     "@fontsource/oswald": "^4.5.12",
-    "@jbuschke/formik-antd": "^1.5.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

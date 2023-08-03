@@ -10,11 +10,15 @@ import {Link, useNavigate} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import AuthContext from "../../context/AuthContext";
 
-function MainPage() {
 
+function MainPage() {
     let {user, authTokens} = useContext(AuthContext)
     let [products, setProducts] = useState([])
     let navigate = useNavigate()
+
+    useEffect(() => {
+        getProductList();
+    }, [])
 
     const getProductList = async () => {
         if (authTokens) {
@@ -41,10 +45,6 @@ function MainPage() {
                 .then(data => setProducts(data));
         }
     }
-
-    useEffect(() => {
-        getProductList();
-    }, [])
 
     console.log(products)
 
