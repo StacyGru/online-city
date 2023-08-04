@@ -136,13 +136,13 @@ function Order() {
                                                         {(orderItem.amount === 1)
                                                             ?
                                                                 <button className="opacity-50 bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center" disabled>
-                                                                    <img src={Minus} className="w-3"/>
+                                                                    <img src={Minus} alt="Минус" className="w-3"/>
                                                                 </button>
                                                             :
                                                                 <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
                                                                         onClick={(e) => changeOrderItemAmount(e, orderItem.id, "minus")}
                                                                 >
-                                                                    <img src={Minus} className="w-3"/>
+                                                                    <img src={Minus} alt="Минус" className="w-3"/>
                                                                 </button>
                                                         }
                                                     </td>
@@ -153,7 +153,7 @@ function Order() {
                                                         <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
                                                                 onClick={(e) => changeOrderItemAmount(e, orderItem.id, "plus")}
                                                         >
-                                                            <img src={Plus} className="w-3"/>
+                                                            <img src={Plus} alt="Плюс" className="w-3"/>
                                                         </button>
                                                     </td>
                                                     <td>
@@ -163,7 +163,7 @@ function Order() {
                                                         <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
                                                                 onClick={(e) => deleteOrderItem(e, orderItem.id)}
                                                         >
-                                                            <img src={Plus} className="rotate-45 w-3"/>
+                                                            <img src={Plus} alt="Плюс" className="rotate-45 w-3"/>
                                                         </button>
                                                     </td>
                                                 </tr>

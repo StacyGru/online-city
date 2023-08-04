@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 
 function Basket(){
 
-    let {authTokens, user} = useContext(AuthContext)
+    let {authTokens} = useContext(AuthContext)
     let [basketItems, setBasketItems] = useState([])
 
     const getBasket = async () => {
@@ -32,7 +32,7 @@ function Basket(){
 
     function orderSum() {
         let sum = 0
-        basketItems.map((basketItem, id) => {
+        basketItems.map((basketItem) => {
             sum += basketItem.price * basketItem.amount
         })
         return sum
@@ -76,7 +76,7 @@ function Basket(){
                     <div className="flex flex-col items-center">
                             <div className="bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center justify-center mb-5 w-fit">
                                 <div className="w-40 h-40 shrink-0 grow-0">
-                                    <img src={basketItem.picture ? "http://localhost:8000"+basketItem.picture : CatalogItemImg} alt="your image" className="h-full w-full object-contain"/>
+                                    <img src={basketItem.picture ? "http://localhost:8000"+basketItem.picture : CatalogItemImg} alt={basketItem.name} className="h-full w-full object-contain"/>
                                 </div>
                                 <div className="mx-10 w-1/5">
                                     <Link to="catalog_item"><h2 className="hover:underline text-xl mb-5">{basketItem.name}</h2></Link>
@@ -86,26 +86,26 @@ function Basket(){
                                     {(basketItem.amount === 1)
                                         ?
                                             <button className="opacity-50 bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center" disabled>
-                                                <img src={Minus}/>
+                                                <img src={Minus} alt="Минус"/>
                                             </button>
                                         :
                                             <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
                                                     onClick={(e) => changeBasketItemAmount(e, basketItem.id, "minus")}
                                             >
-                                                <img src={Minus}/>
+                                                <img src={Minus} alt="Минус"/>
                                             </button>
                                     }
                                     <h2 className="text-2xl">{basketItem.amount}</h2>
                                     <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
                                             onClick={(e) => changeBasketItemAmount(e, basketItem.id, "plus")}
                                     >
-                                        <img src={Plus}/>
+                                        <img src={Plus} alt="Плюс"/>
                                     </button>
                                     <h2 className="text-2xl mx-10 shrink-0">{basketItem.price} ₽</h2>
                                     <button className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
                                             onClick={() => deleteBasketItem(basketItem.id)}
                                     >
-                                        <img src={Plus} className="rotate-45"/>
+                                        <img src={Plus} alt="Плюс" className="rotate-45"/>
                                     </button>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@ function Basket(){
                 ))
                 :
                 <div className="w-1/2 bg-mainWhite py-10 px-10 drop-shadow-sm rounded-xl flex flex-col h-fit gap-5 items-center">
-                    <img src={BasketIcon} className="object-contain h-40 w-auto"/>
+                    <img src={BasketIcon} alt="Корзина" className="object-contain h-40 w-auto"/>
                     <p>В корзине пока пусто :(</p>
                     <Link to="/checkout" className="bg-mainOrange rounded-2xl justify-center items-center p-3">
                         <p className="text-mainWhite whitespace-nowrap">Перейти к покупкам</p>

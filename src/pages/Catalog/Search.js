@@ -211,7 +211,7 @@ function Search() {
                             {products.map((product) => (
                                 <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
                                     <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
                                     {((params.category === 'system_units')||(params.category === 'computer_kits'))
                                         ?
@@ -230,7 +230,7 @@ function Search() {
                                             <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center"
                                                     onClick={() => addBasketItem(product.id)}
                                             >
-                                                <img src={Basket} className="h-8"/>
+                                                <img src={Basket} alt="Корзина" className="h-8"/>
                                             </button>
                                         }
                                     </div>

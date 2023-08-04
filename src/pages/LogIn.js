@@ -14,6 +14,7 @@ const LogIn = () => {
                         <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
                             <img
                                 src={Reg}
+                                alt="Авторизация"
                                 className="btn-"/>
                         </div>
                     </div>
