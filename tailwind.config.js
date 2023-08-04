@@ -11,6 +11,7 @@ module.exports = {
         mainWhite: '#FFFFFF',
         darkBlue: '#232F34',
         mainGray: '#8F8F8F',
+        mainBlue: 'rgba(7, 118, 160, 1)'
       },
       dropShadow: {
         'sm': '0 0 1px rgba(0, 0, 0, 0.25)',
