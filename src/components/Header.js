@@ -47,7 +47,7 @@ const Header = () => {
                     <div className="text-sm mt-2 items-center">
                         <div className="flex items-center">
                             <img src={Phone} alt="Телефон" className="h-4 mr-3"/>
-                            <p>+7 (495) 799-47-42</p>
+                            <p>+7 (903) 799-47-42</p>
                         </div>
                         <div className="flex items-center">
                             <img src={Phone} alt="Телефон" className="h-4 mr-3"/>
