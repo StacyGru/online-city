@@ -75,27 +75,27 @@ function MainPage() {
             <h1 className="text-3xl font-bold mb-10">Магазин компьютерной техники Online City</h1>
             <div className="flex flex-wrap justify-center gap-5 font-light text-lg mb-10 3xl:w-4/5">
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Year1999} className="w-16 mr-5"/>
+                    <img src={Year1999} alt="1999 год" className="w-16 mr-5"/>
                     <p>Продаём быстрые, надёжные и недорогие компьютеры в Москве с 1999 года</p>
                 </div>
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Delivery} className="w-16 mr-5"/>
+                    <img src={Delivery} alt="Доставка" className="w-16 mr-5"/>
                     <p>Сотрудничаем с логистической компанией, доставляем товар в любую точку страны</p>
                 </div>
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Chat} className="w-16 mr-5"/>
+                    <img src={Chat} alt="Общение" className="w-16 mr-5"/>
                     <p>Бесплатно консультируем и помогаем подобрать комплектующие</p>
                 </div>
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Gears} className="w-16 mr-5"/>
+                    <img src={Gears} alt="Шестерёнки" className="w-16 mr-5"/>
                     <p>Бесплатно собираем компьютеры и устанавливаем программное обеспечение</p>
                 </div>
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Service} className="w-16 mr-5"/>
+                    <img src={Service} alt="Ремонт" className="w-16 mr-5"/>
                     <p>Осуществляем бесплатный гарантийный ремонт</p>
                 </div>
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
-                    <img src={Wholesale} className="w-16 mr-5"/>
+                    <img src={Wholesale} alt="Опт" className="w-16 mr-5"/>
                     <p>Делаем скидки оптовым покупателям</p>
                 </div>
             </div>
@@ -104,7 +104,7 @@ function MainPage() {
                 {products.map((product) => (
                     <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center hover:drop-shadow-lg duration-300">
                         <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                            <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                            <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                         </div>
                         <h2 className="hover:underline text-xl mb-5">{product.name}</h2>
                         <p className="font-light mb-5 grow">{product.short_description}</p>
@@ -118,7 +118,7 @@ function MainPage() {
                                 <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center hover:scale-110 duration-500"
                                         onClick={() => addBasketItem(product.id)}
                                 >
-                                    <img src={Basket} className="h-8"/>
+                                    <img src={Basket} alt="Корзина" className="h-8"/>
                                 </button>
                             }
                         </div>

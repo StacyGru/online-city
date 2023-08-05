@@ -17,11 +17,11 @@ const CatalogComputers = () => {
             </div>
             <div className="flex gap-10 justify-center">
                 <Link to="/catalog/computers/system_units" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm hover:drop-shadow-lg duration-300 rounded-xl text-center flex flex-col justify-center items-center">
-                    <img src={SystemUnit} className="h-4/5"/>
+                    <img src={SystemUnit} alt="Системный блок" className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Системные блоки</h1>
                 </Link>
                 <Link to="/catalog/computers/computer_kits" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm hover:drop-shadow-lg duration-300 rounded-xl text-center flex flex-col justify-center items-center">
-                    <img src={Computer} className="h-4/5"/>
+                    <img src={Computer} alt="Компьютер в комплекте" className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Компьютеры в комплекте</h1>
                 </Link>
             </div>

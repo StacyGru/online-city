@@ -4,7 +4,6 @@ import Basket from "../../media/basket.png";
 import {Link} from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import {useParams} from "react-router";
-import Arrow from "../../media/arrow.png";
 
 function Product() {
     let {user, authTokens} = useContext(AuthContext)
@@ -100,7 +99,7 @@ function Product() {
                         <div className="bg-mainWhite p-10 drop-shadow-sm rounded-xl flex mt-10 w-full">
                             <div className="flex flex-col">
                                 <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                                    <img src={product.product.picture ? "http://localhost:8000"+product.product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                                    <img src={product.product.picture ? "http://localhost:8000"+product.product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                 </div>
                                 <div className="w-full flex justify-between items-center self-end mt-5">
                                     <h2 className="text-2xl">{product.product.price} ₽</h2>
@@ -112,7 +111,7 @@ function Product() {
                                         <button className="bg-mainOrange drop-shadow-sm rounded-xl w-fit flex justify-center items-center p-3"
                                                 onClick={() => addBasketItem(product.product.id)}
                                         >
-                                            <img src={Basket} className="h-8"/>
+                                            <img src={Basket} alt="Корзина" className="h-8"/>
                                             <p className="text-mainWhite ml-3">В корзину</p>
                                         </button>
                                     }

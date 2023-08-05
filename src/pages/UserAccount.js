@@ -179,19 +179,19 @@ function UserAccount() {
                             {products.map((product) => (
                                 <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center">
                                     <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
                                     <h2 className="text-xl mb-5">{product.name}</h2>
                                     <p className="font-light grow">{product.short_description}</p>
                                     <div className="w-full flex justify-between items-center self-end mt-5">
                                         <Link to={`/product/system_unit/${product.id}`} className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center">
-                                            <img src={Edit} className="h-6"/>
+                                            <img src={Edit} alt="Редактировать" className="h-6"/>
                                         </Link>
                                         <button to="/basket"
                                                 className="bg-grayWhite h-10 w-10 drop-shadow-sm rounded-xl flex items-center justify-center"
                                                 onClick={togglePopup}
                                         >
-                                            <img src={Delete} className="h-6"/>
+                                            <img src={Delete} alt="Удалить" className="h-6"/>
                                         </button>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@ function UserAccount() {
                             <button className="bg-grayWhite h-8 w-8 drop-shadow-sm rounded-xl flex items-center justify-center"
 
                             >
-                                <img src={Plus}/>
+                                <img src={Plus} alt="Плюс"/>
                             </button>
                         </Link>
                     </div>

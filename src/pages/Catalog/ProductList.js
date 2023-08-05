@@ -208,7 +208,7 @@ function ProductList() {
                     <div className="h-fit bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col font-light">
                         <div className="flex items-center gap-3">
                             <p className="font-normal mb-2">Цена, ₽</p>
-                            <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                            <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                         </div>
                         <div className="flex gap-2">
                             <label htmlFor="min">от</label>
@@ -223,7 +223,7 @@ function ProductList() {
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Предназначение</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <input type="checkbox" id="home" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
@@ -240,7 +240,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Объём оперативной памяти</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {amountOfRAM.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -251,7 +251,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Серия процессора</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {processorSeries.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -262,7 +262,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Объём HDD</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <input type="checkbox" id="hdd1" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
@@ -279,7 +279,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Объём SSD</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <input type="checkbox" id="ssd1" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
@@ -300,7 +300,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Модель видеокарты</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {videoCard.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -318,7 +318,7 @@ function ProductList() {
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Производитель</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {manufacturer.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -336,7 +336,7 @@ function ProductList() {
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Диагональ экрана</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <input type="checkbox" id="d1"
@@ -371,7 +371,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Разрешение экрана</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {screenResolution.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -390,7 +390,7 @@ function ProductList() {
                             <>
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Тип матрицы</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {matrixType.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -401,7 +401,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Изогнутый экран</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <input type="checkbox" id="true" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
@@ -414,7 +414,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Цвет рамки</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {frameColor.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -425,7 +425,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Крепление</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {wallMount.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -436,7 +436,7 @@ function ProductList() {
 
                                 <div className="flex items-center gap-3 mt-3">
                                     <p className="font-normal mb-2">Соотношение сторон</p>
-                                    <img src={Arrow} className="w-3 h-3 mb-1 rotate-180"/>
+                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
                                 {aspectRatio.map((item) => (
                                     <div className="flex flex-row gap-2 items-center">
@@ -470,7 +470,7 @@ function ProductList() {
                             {products.map((product) => (
                                 <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-64 h-64 shrink-0 grow-0 m-5">
-                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} className="h-full w-full object-contain"/>
+                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
                                     {((params.category === 'system_units')||(params.category === 'computer_kits'))
                                         ?
@@ -489,7 +489,7 @@ function ProductList() {
                                             <button className="bg-mainOrange drop-shadow-sm rounded-xl h-12 w-12 flex justify-center items-center hover:scale-110 duration-500"
                                                     onClick={() => addBasketItem(product.id)}
                                             >
-                                                <img src={Basket} className="h-8"/>
+                                                <img src={Basket} alt="Корзина" className="h-8"/>
                                             </button>
                                         }
                                     </div>

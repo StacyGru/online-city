@@ -14,15 +14,15 @@ const Catalog = () => {
             </div>
             <div className="flex gap-10 justify-center">
                 <Link to="/catalog/computers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm hover:drop-shadow-lg duration-300 rounded-xl text-center flex flex-col justify-center items-center">
-                    <img src={Computer} className="h-4/5"/>
+                    <img src={Computer} alt="Компьютер" className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Компьютеры</h1>
                 </Link>
                 <Link to="/catalog/monitors" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm hover:drop-shadow-lg duration-300 rounded-xl text-center flex flex-col justify-center items-center">
-                    <img src={Monitor} className="h-4/5"/>
+                    <img src={Monitor} alt="Монитор" className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Мониторы</h1>
                 </Link>
                 <Link to="/catalog/special_offers" className="p-5 w-1/4 lg:w-1/5 aspect-square square bg-mainWhite drop-shadow-sm hover:drop-shadow-lg duration-300 rounded-xl text-center flex flex-col justify-center items-center">
-                    <img src={SpecialOffer} className="h-4/5"/>
+                    <img src={SpecialOffer} alt="Спецпредложение" className="h-4/5"/>
                     <h1 className="text-lg lg:text-2xl">Спецпредложения</h1>
                 </Link>
             </div>
