@@ -46,7 +46,6 @@ const AboutUs = () => {
 
                 <div className="flex justify-between border border-x-0 border-t-0 border-b-3 border-mainOrange border-opacity-50 py-10">
                     <div className="flex gap-5 items-center">
-
                         <img src={Clients} alt="Клиенты" className="w-10 h-10"/>
                         <h2 className="text-2xl">Кто наши клиенты?</h2>
                     </div>

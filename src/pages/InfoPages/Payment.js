@@ -9,7 +9,7 @@ const Payment = () => {
             <h1 className="text-3xl font-bold mb-10">Оплата</h1>
             <div className="bg-mainWhite py-10 px-20 drop-shadow-sm rounded-xl flex flex-col w-full font-light">
                 <div className="flex gap-5 items-center mb-5">
-                    <img src={Cash} alt="Наличные" className="w-12 h-12"/>
+                    <img src={Cash} alt="Наличные" className="w-10 h-10"/>
                     <h2 className="text-2xl font-normal">Наличная оплата</h2>
                 </div>
                 <p className="border border-x-0 border-t-0 border-b-3 border-mainOrange border-opacity-50 pb-10">Вы можете оплатить заказ наличными как в физическом магазине, так и при получении доставки.</p>

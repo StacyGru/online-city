@@ -150,6 +150,10 @@ a {
     before:bottom-0 hover:before:scale-x-100;
 }
 
+.client-div:hover .client-name {
+    @apply font-normal
+}
+
 @media (min-width: 1024px) {
     .grid-labels
     {

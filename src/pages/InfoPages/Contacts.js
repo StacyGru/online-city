@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import {useState} from "react";
 
 const Contacts = () => {
 
@@ -37,7 +36,7 @@ const Contacts = () => {
                     />
                 </div>
                 <div className="flex flex-col font-light gap-5">
-                    <p><b>Адрес:</b> 127018, Москва, ул. Сущевский вал, д. 5, стр 1, ТК «Савеловский»; пав. 2F-06.</p>
+                    <p><b>Адрес:</b> 127018, г. Москва, ул. Сущевский вал, д. 5, стр. 1, ТК «Савеловский»; пав. 2F-06.</p>
                     <p>Центральный вход старого компьютерного торгового комплекса, 2 этаж, павильон располагается справа.
                     Посмотреть местоположение павильона на общей схеме торгового комплекса можно <Link to="https://www.savel.ru/schemes/pc:2#id-2F06" className="text-mainOrange before:bg-mainOrange link-hover-underline">по ссылке</Link>.</p>
                     <p><b>Время работы:</b> с 11:00 до 19:30.</p>
