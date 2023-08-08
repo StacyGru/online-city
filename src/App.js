@@ -26,7 +26,7 @@ import Search from "./pages/Catalog/Search";
 function App() {
 
     return (
-        <div className="grid-layout text-xs lg:text-sm 2xl:text-lg font-normal text-darkBlue bg-grayWhite">
+        <div className="text-xs lg:text-sm 2xl:text-lg font-normal text-darkBlue bg-grayWhite">
             <AuthProvider>
                 <Header/>
                 <Routes>
