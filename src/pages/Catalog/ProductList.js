@@ -468,7 +468,7 @@ function ProductList() {
                         </div>
                         <div className="w-full grid md:grid-cols-2 md:gap-6 lg:grid-cols-3 2xl:grid-cols-4 lg:gap-5 xl:gap-14">
                             {products.map((product) => (
-                                <div className="bg-mainWhite py-5 px-5 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
+                                <div className="bg-mainWhite py-5 md:px-5 2xl:px-10 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-auto md:h-24 lg:h-28 xl:h-64 shrink-0 grow-0 m-3">
                                         <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
