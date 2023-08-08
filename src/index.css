@@ -138,6 +138,22 @@ select {
     min-width: 56.5rem;
 }
 
+a {
+    transition-duration: 500ms;
+}
+
+.link-hover-underline {
+    @apply font-normal relative
+    /*text-mainOrange before:bg-mainOrange*/
+    before:content-[""] before:absolute before:block before:w-full before:h-[1.5px]
+    before:transition-transform before:duration-[0.3s] before:ease-[ease] before:scale-x-0 before:left-0
+    before:bottom-0 hover:before:scale-x-100;
+}
+
+.client-div:hover .client-name {
+    @apply font-normal
+}
+
 @media (min-width: 1024px) {
     .grid-labels
     {
