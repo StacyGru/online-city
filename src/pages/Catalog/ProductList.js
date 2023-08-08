@@ -466,30 +466,30 @@ function ProductList() {
                                 <p>сначала дорогие</p>
                             </button>
                         </div>
-                        <div className="w-full grid md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-5">
+                        <div className="w-full grid md:grid-cols-2 md:gap-6 lg:grid-cols-3 2xl:grid-cols-4 lg:gap-5 xl:gap-14">
                             {products.map((product) => (
-                                <div className="w-fit bg-mainWhite py-5 px-5 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
+                                <div className="bg-mainWhite py-5 px-5 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-auto md:h-24 lg:h-28 xl:h-64 shrink-0 grow-0 m-3">
                                         <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
                                     {((params.category === 'system_units')||(params.category === 'computer_kits'))
                                         ?
-                                        <Link to={`/catalog/computers/${params.category}/${product.id}`}><h2 className="md:text-base xl:text-xl 2xl:text-2xl hover:underline mb-5">{product.name}</h2></Link>
+                                        <Link to={`/catalog/computers/${params.category}/${product.id}`}><h2 className="md:text-base xl:text-xl 2xl:text-3xl hover:underline mb-5">{product.name}</h2></Link>
                                         :
-                                        <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline md:text-xl 2xl:text-2xl mb-5">{product.name}</h2></Link>
+                                        <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline md:text-xl 2xl:text-3xl mb-5">{product.name}</h2></Link>
                                     }
                                     <p className="font-light mb-3 grow lg:text-xs xl:text-base">{product.short_description}</p>
                                     <div className="w-full flex justify-between items-center self-end">
-                                        <h2 className="md:text-xl xl:text-2xl">{product.price} ₽</h2>
+                                        <h2 className="md:text-xl xl:text-2xl 2xl:text-3xl">{product.price} ₽</h2>
                                         {product.basket_amount ?
                                             <Link to="/basket" className="data-hover bg-grayWhite hover:bg-mainOrange h-12 w-24 drop-shadow-sm rounded-xl flex items-center justify-center duration-500">
                                                 <span className="whitespace-nowrap">В корзине</span>
                                             </Link>
                                             :
-                                            <button className="bg-mainOrange drop-shadow-sm xl:rounded-xl md:rounded-lg md:h-8 md:w-8 lg:w-9 lg:h-9 lg:w-9 xl:h-12 xl:w-12 flex justify-center items-center hover:scale-110 duration-500"
+                                            <button className="bg-mainOrange drop-shadow-sm xl:rounded-xl md:rounded-lg md:h-8 md:w-8 lg:w-9 lg:h-9 lg:w-9 xl:h-12 xl:w-12 2xl:h-16 2xl:w-16 flex justify-center items-center hover:scale-110 duration-500"
                                                     onClick={() => addBasketItem(product.id)}
                                             >
-                                                <img src={Basket} alt="Корзина" className="md:h-5 lg:h-6 xl:h-8"/>
+                                                <img src={Basket} alt="Корзина" className="md:h-5 lg:h-6 xl:h-8 2xl:h-10 2xl:w-10"/>
                                             </button>
                                         }
                                     </div>

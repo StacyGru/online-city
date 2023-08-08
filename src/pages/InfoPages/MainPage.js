@@ -100,7 +100,7 @@ function MainPage() {
                 </div>
             </div>
             <h1 className="text-3xl font-bold mb-10">Популярные товары</h1>
-            <div className="flex flex-wrap justify-evenly gap-5">
+            <div className="flex flex-wrap justify-evenly gap-3">
                 {products.map((product) => (
                     <div className="w-72 bg-mainWhite py-5 px-10 drop-shadow-sm rounded-xl flex flex-col items-center hover:drop-shadow-lg duration-300">
                         <div className="w-64 h-64 shrink-0 grow-0 m-5">
