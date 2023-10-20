@@ -8,7 +8,6 @@ import Plus from "../media/plus.png";
 import Popup from "../components/PopUp";
 
 function UserAccount() {
-
     let navigate = useNavigate()
     let {logoutUser, authTokens, user} = useContext(AuthContext)
     let [orders, setOrders] = useState([])

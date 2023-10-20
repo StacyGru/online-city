@@ -7,68 +7,34 @@ import Wholesale from "../../media/wholesale.png";
 import CatalogItemImg from "../../media/catalog_item.png";
 import Basket from "../../media/basket.png";
 import {Link, useNavigate} from "react-router-dom";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import AuthContext from "../../context/AuthContext";
+import {useAddToBasketMutation, useGetProductsQuery} from "../../api/apiSlice";
 
 
 function MainPage() {
-    let {user, authTokens} = useContext(AuthContext)
-    let [products, setProducts] = useState([])
-    let navigate = useNavigate()
+    let {user, authTokens} = useContext(AuthContext);
+    const {data: products = []} = useGetProductsQuery();
 
-    useEffect(() => {
-        getProductList();
-    }, [])
+    const [addToBasket] = useAddToBasketMutation();
 
-    const getProductList = async () => {
+    const navigate = useNavigate();
+
+    const addBasketItem = (id) => {
         if (authTokens) {
-            await fetch(
-                `http://127.0.0.1:8000/products/main_page/`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authTokens.access}`,
-                    },
-                }
-            )
-                .then(res => res.json())
-                .then(data => setProducts(data));
-        }
-        else {
-            await fetch(
-                `http://127.0.0.1:8000/products/main_page/`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-                .then(res => res.json())
-                .then(data => setProducts(data));
-        }
-    }
-
-    console.log(products)
-
-    async function addBasketItem(id) {
-        if (authTokens) {
-            await fetch(
-                'http://127.0.0.1:8000/basket_item', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authTokens.access}`,
-                    },
-                    body: JSON.stringify({
-                        'client': user.id,
-                        'product': id
-                    })
-                }
-            )
-           getProductList();
+            addToBasket({
+                'client': user.id,
+                'product': id
+            })
         }
         else {
             navigate('/login')
         }
     }
+
+    const settings = {
+        dots: true,
+    };
 
     return (
         <div className="flex flex-col grow items-center px-1/10">
@@ -125,6 +91,7 @@ function MainPage() {
                     </div>
                 ))}
             </div>
+
         </div>
     )
 }
