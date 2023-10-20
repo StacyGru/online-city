@@ -201,14 +201,14 @@ const Registration = () => {
                                 <Field className="bg-mainWhite border-mainOrange border-2 rounded-xl px-3 py-1"
                                        id="password"
                                        name="password"
-                                       type="password"
+                                       type="text"
                                        validate={validatePassword}
                                 />
                                 :
                                 <Field className="bg-mainWhite border-darkBlue border-2 rounded-xl px-3 py-1"
                                        id="password"
                                        name="password"
-                                       type="password"
+                                       type="text"
                                        validate={validatePassword}
                                 />
                         }
@@ -228,14 +228,14 @@ const Registration = () => {
                                 <Field className="bg-mainWhite border-mainOrange border-2 rounded-xl px-3 py-1"
                                        id="password_confirmation"
                                        name="password_confirmation"
-                                       type="password"
+                                       type="text"
                                        validate={yup}
                                 />
                                 :
                                 <Field className="bg-mainWhite border-darkBlue border-2 rounded-xl px-3 py-1"
                                        id="password_confirmation"
                                        name="password_confirmation"
-                                       type="password"
+                                       type="text"
                                        validate={yup}
                                 />
                         }
