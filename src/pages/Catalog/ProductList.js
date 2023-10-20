@@ -8,7 +8,6 @@ import Arrow from "../../media/arrow.png";
 import {
     useAddToBasketMutation,
     useGetFiltersQuery,
-    useGetProductListQuery,
     useGetProductsQuery
 } from "../../api/apiSlice";
 import {skipToken} from '@reduxjs/toolkit/query';
