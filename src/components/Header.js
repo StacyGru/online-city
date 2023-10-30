@@ -15,7 +15,7 @@ const Header = () => {
 
     if ((user && (user.role === "клиент")) || !user) {
         return (
-            <header className="w-full grid-header bg-darkBlue md:px-10 lg:px-10 xl:px-16 2xl:px-20 3xl:px-36 py-2.5 flex text-grayWhite mb-10 justify-between items-center">
+            <header className="2xl:px-[200px] xl:px-[150px] lg:px-[100px] md:px-[50px] w-full grid-header bg-darkBlue py-2.5 flex text-grayWhite mb-10 justify-between items-center">
                 <div className="w-1/10 3xl:w-1/10 flex justify-start">
                     <Link to="/"><img src={Logo} alt="Логотип ONCI" className="object-contain md:h-10 lg:h-12 xl:h-14 2xl:h-16 m-auto"/></Link>
                 </div>

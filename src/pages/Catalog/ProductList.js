@@ -6,9 +6,9 @@ import AuthContext from "../../context/AuthContext";
 import {useParams} from "react-router";
 import Arrow from "../../media/arrow.png";
 import {
-    useAddToBasketMutation,
+    useAddToBasketMutation, useGetAttributesQuery,
     useGetFiltersQuery,
-    useGetProductsQuery
+    useGetProductsQuery, useGetValuesQuery
 } from "../../api/apiSlice";
 import {skipToken} from '@reduxjs/toolkit/query';
 import {useDispatch, useSelector} from "react-redux";
@@ -19,54 +19,59 @@ import SetCategory from "./SetCategory";
 const ProductList = () => {
     let navigate = useNavigate()
     let {user, authTokens} = useContext(AuthContext);
-    // const {activeCategory} = useSelector(state => state.getCatalog);
-    // const {data: products = []} = useGetProductsQuery(activeCategory ? activeCategory : skipToken);
+    const {id} = useParams();
+    console.log(id)
+
+    // const {data: products = []} = useGetProductsQuery(id ? id : skipToken);
 
     const {data: products = []} = useGetProductsQuery();
+    const {data: values = []} = useGetValuesQuery();
+    const {data: attributes = []} = useGetAttributesQuery();
+
 
     const [addToBasket] = useAddToBasketMutation();
 
-    const dispatch = useDispatch();
-    const params = useParams();
-    const {request, category_name} = SetCategory(params);
-
-    useEffect(() => {
-        dispatch(categoryChange(request));
-    }, [request])
-
-    async function addBasketItem(id) {
-        if (authTokens) {
-            addToBasket({
-                'client': user.id,
-                'product': id
-            })
-        }
-        else {
-            navigate('/login')
-        }
-    }
+    // const dispatch = useDispatch();
+    // const {request, category_name} = SetCategory(params);
+    //
+    // useEffect(() => {
+    //     dispatch(categoryChange(request));
+    // }, [request])
+    //
+    // async function addBasketItem(id) {
+    //     if (authTokens) {
+    //         addToBasket({
+    //             'client': user.id,
+    //             'product': id
+    //         })
+    //     }
+    //     else {
+    //         navigate('/login')
+    //     }
+    // }
 
     return (
-        <div className="px-7">
-            <div className="grid grid-cols-3 grid-rows-1 px-1/10">
-                <p className="h-fit w-fit text-xs font-light text-mainGray">
-                    <Link to="/catalog" className="hover:underline">Каталог товаров</Link>
-                    <span> > </span>
-                    {((params.category === 'system_units')||(params.category === 'computer_kits'))
-                        ?
-                            <>
-                                <Link to="/catalog/computers" className="hover:underline">Компьютеры</Link>
-                                <span> > </span>
-                                <Link to={`/catalog/computers/${params.category}`} className="hover:underline">{category_name}</Link>
-                            </>
-                        :
-                            <Link to={`/catalog/${params.category}`} className="hover:underline">{category_name}</Link>
-                    }
-                </p>
-                <h1 className="md:text-xl xl:text-3xl lg:text-2xl font-bold mb-10 text-center">{category_name}</h1>
-                <p className="text-mainGray justify-self-end">{products.length} товаров</p>
-                <div/>
-            </div>
+        <div className="">
+            {/*<div className="grid grid-cols-3 grid-rows-1 px-1/10">*/}
+            {/*    <p className="h-fit w-fit text-xs font-light text-mainGray">*/}
+            {/*        <Link to="/catalog" className="hover:underline">Каталог товаров</Link>*/}
+            {/*        <span> > </span>*/}
+            {/*        {((params.category === 'system_units')||(params.category === 'computer_kits'))*/}
+            {/*            ?*/}
+            {/*                <>*/}
+            {/*                    <Link to="/catalog/computers" className="hover:underline">Компьютеры</Link>*/}
+            {/*                    <span> > </span>*/}
+            {/*                    <Link to={`/catalog/computers/${params.category}`} className="hover:underline">{category_name}</Link>*/}
+            {/*                </>*/}
+            {/*            :*/}
+            {/*                <Link to={`/catalog/${params.category}`} className="hover:underline">{category_name}</Link>*/}
+            {/*        }*/}
+            {/*    </p>*/}
+            {/*    <h1 className="md:text-xl xl:text-3xl lg:text-2xl font-bold mb-10 text-center">{category_name}</h1>*/}
+            {/*    <p className="text-mainGray justify-self-end">{products.length} товаров</p>*/}
+            {/*    <div/>*/}
+            {/*</div>*/}
+
             {products
                 ?
                     <div className="flex flex-row gap-10 justify-center">
@@ -82,239 +87,25 @@ const ProductList = () => {
                             <input id="max"
                                    className="bg-grayWhite drop-shadow-sm rounded-xl px-3 py-1 w-20"/>
                         </div>
-
-                        {((params.category === 'system_units')||(params.category === 'computer_kits'))
-                            ?
+                        {attributes && attributes.map(item => (
                             <>
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Предназначение</p>
+                                <div key={item.id} className="flex items-center gap-3 mt-3">
+                                    <p className="font-normal mb-2">{item.name}</p>
                                     <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
                                 </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="home" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="home">Для дома</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="office" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="office">Для офиса</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="gaming" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="gaming">Для игр</label>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Объём оперативной памяти</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {amountOfRAM.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Серия процессора</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {processorSeries.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Объём HDD</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="hdd1" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="hdd1">от 1 до 2 ТБ</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="hdd2" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="hdd2">от 2 до 3 ТБ</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="hdd3" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="hdd3">3 ТБ и более</label>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Объём SSD</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="ssd1" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="ssd1">от 100 до 200 ГБ</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="ssd2" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="ssd2">от 200 до 300 ГБ</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="ssd3" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="ssd3">от 400 до 500 ГБ</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="ssd4" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="ssd4">от 500 ГБ и более</label>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Модель видеокарты</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {videoCard.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
+                                {values && values.map(value => {
+                                    if (value.attribute_id === item.id) {
+                                        return (
+                                            <div key={value.id} className="flex flex-row gap-2 items-center">
+                                                <input type="checkbox" id="home"
+                                                       className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
+                                                <label htmlFor="home">{value.name}</label>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </>
-                            :
-                            null
-                        }
-
-                        {(params.category === 'monitors')
-                            ?
-                            <>
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Производитель</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {manufacturer.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-                            </>
-                            :
-                            null
-                        }
-
-                        {((params.category === 'monitors')||(params.category === 'computer_kits'))
-                            ?
-                            <>
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Диагональ экрана</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d1"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d1">от 10" до 18,5"</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d2"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d2">от 19" до 22"</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d3"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d3">от 23" до 26"</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d4"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d4">от 27" до 30"</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d5"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d5">от 31" до 39"</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="d6"
-                                           className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="d6">от 40" и более</label>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Разрешение экрана</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {screenResolution.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name}
-                                               className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-                            </>
-                            :
-                            null
-                        }
-
-                        {(params.category === 'monitors')
-                            ?
-                            <>
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Тип матрицы</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {matrixType.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Изогнутый экран</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="true" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="true">да</label>
-                                </div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <input type="checkbox" id="false" className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                    <label htmlFor="false">нет</label>
-                                </div>
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Цвет рамки</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {frameColor.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Крепление</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {wallMount.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-
-                                <div className="flex items-center gap-3 mt-3">
-                                    <p className="font-normal mb-2">Соотношение сторон</p>
-                                    <img src={Arrow} alt="Стрелка" className="w-3 h-3 mb-1 rotate-180"/>
-                                </div>
-                                {aspectRatio.map((item) => (
-                                    <div className="flex flex-row gap-2 items-center">
-                                        <input type="checkbox" id={item.name} className="w-4 h-4 border-2 border-darkBlue text-mainWhite accent-mainOrange checked:border-0"/>
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                ))}
-                            </>
-                            :
-                            null
-                        }
-
-
+                        ))}
                     </div>
                     <div className="flex flex-col gap-5 justify-start">
                         <div className="flex gap-5 font-light items-center">
@@ -335,14 +126,14 @@ const ProductList = () => {
                             {products.map((product) => (
                                 <div className="bg-mainWhite py-5 md:px-5 2xl:px-10 drop-shadow-sm hover:drop-shadow-lg rounded-xl flex flex-col items-center duration-300">
                                     <div className="w-auto md:h-24 lg:h-28 xl:h-64 shrink-0 grow-0 m-3">
-                                        <img src={product.picture ? "http://localhost:8000"+product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
+                                        <img src={product.picture ? product.picture : CatalogItemImg} alt={product.name} className="h-full w-full object-contain"/>
                                     </div>
-                                    {((params.category === 'system_units')||(params.category === 'computer_kits'))
-                                        ?
-                                        <Link to={`/catalog/computers/${params.category}/${product.id}`}><h2 className="md:text-base xl:text-xl 2xl:text-3xl hover:underline mb-5">{product.name}</h2></Link>
-                                        :
-                                        <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline md:text-xl 2xl:text-3xl mb-5">{product.name}</h2></Link>
-                                    }
+                                    {/*{((params.category === 'system_units')||(params.category === 'computer_kits'))*/}
+                                    {/*    ?*/}
+                                    {/*    <Link to={`/catalog/computers/${params.category}/${product.id}`}><h2 className="md:text-base xl:text-xl 2xl:text-3xl hover:underline mb-5">{product.name}</h2></Link>*/}
+                                    {/*    :*/}
+                                    {/*    <Link to={`/catalog/${params.category}/${product.id}`}><h2 className="hover:underline md:text-xl 2xl:text-3xl mb-5">{product.name}</h2></Link>*/}
+                                    {/*}*/}
                                     <p className="font-light mb-3 grow lg:text-xs xl:text-base">{product.short_description}</p>
                                     <div className="w-full flex justify-between items-center self-end">
                                         <h2 className="md:text-xl xl:text-2xl 2xl:text-3xl">{product.price} ₽</h2>
@@ -352,7 +143,7 @@ const ProductList = () => {
                                             </Link>
                                             :
                                             <button className="bg-mainOrange drop-shadow-sm xl:rounded-xl md:rounded-lg md:h-8 md:w-8 lg:w-9 lg:h-9 lg:w-9 xl:h-12 xl:w-12 2xl:h-16 2xl:w-16 flex justify-center items-center hover:scale-110 duration-500"
-                                                    onClick={() => addBasketItem(product.id)}
+                                                    // onClick={() => addBasketItem(product.id)}
                                             >
                                                 <img src={Basket} alt="Корзина" className="md:h-5 lg:h-6 xl:h-8 2xl:h-10 2xl:w-10"/>
                                             </button>

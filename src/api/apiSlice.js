@@ -19,9 +19,21 @@ export const apiSlice = createApi({
             query: () => `product/`,
             providesTags: ['Products']
         }),
+        getCategories: builder.query({
+            query: () => `category/`,
+            providesTags: ['Categories']
+        }),
         getFilters: builder.query({
             query: (filter) => `${filter}/`,
             providesTags: ['Filters']
+        }),
+        getValues: builder.query({
+            query: () => `value/`,
+            providesTags: ['Values']
+        }),
+        getAttributes: builder.query({
+            query: () => `attribute/`,
+            providesTags: ['Attributes']
         }),
         addToBasket: builder.mutation({
             query: item => ({
@@ -35,4 +47,11 @@ export const apiSlice = createApi({
     })
 })
 
-export const {useGetProductsQuery, useGetFiltersQuery, useAddToBasketMutation} = apiSlice;
+export const {
+    useGetProductsQuery,
+    useGetFiltersQuery,
+    useGetValuesQuery,
+    useGetAttributesQuery,
+    useGetCategoriesQuery,
+    useAddToBasketMutation
+} = apiSlice;

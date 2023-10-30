@@ -39,7 +39,7 @@ function MainPage() {
     return (
         <div className="flex flex-col grow items-center px-1/10">
             <h1 className="text-3xl font-bold mb-10">Магазин компьютерной техники Online City</h1>
-            <div className="flex flex-wrap justify-center gap-5 font-light text-lg mb-10 3xl:w-4/5">
+            <div className="flex flex-wrap justify-center gap-5 font-light text-lg mb-10">
                 <div className="w-45 lg:w-2/5 bg-mainWhite p-5 drop-shadow-sm rounded-xl flex items-center">
                     <img src={Year1999} alt="1999 год" className="w-16 mr-5"/>
                     <p>Продаём быстрые, надёжные и недорогие компьютеры в Москве с 1999 года</p>
